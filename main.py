@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 @authors: Daniel Elisabethsønn Antonsen and Håkon Alfred Bakker
 Uit, Institute of Computer Science, 2022
