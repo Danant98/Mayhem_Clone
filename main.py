@@ -21,3 +21,6 @@ class Mayhem:
 
     def Main(self):
         pass
+
+if __name__ == "__main__":
+    Mayhem()
