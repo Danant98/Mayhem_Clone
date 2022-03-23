@@ -7,22 +7,37 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 """
 # Importing modules and libratries
 import pygame
+import sys
+from config import HEIGHT, WIDHT, BLACK
 #
 class Mayhem:
     def __init__(self, *argv):
-        pass
+        pygame.init()
+        self.SCREEN = pygame.display.set_mode([WIDHT, HEIGHT])
+        self.clock = pygame.time.Clock()
+        self.runGame = True
+        self.FPS = 30
 
     def EventHandler(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.runGame = False
+                sys.exit()
 
     def Update(self):
         pass
 
     def Draw(self):
-        pass
+        pygame.display.update()
 
     def Main(self):
-        pass
+        while self.runGame:
+            pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
+            self.clock.tick(self.FPS)
+            self.SCREEN.fill(BLACK)
+            self.EventHandler()
+            self.Draw()
 
 if __name__ == "__main__":
-    pass
+    game = Mayhem()
+    game.Main()
