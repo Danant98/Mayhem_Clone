@@ -23,6 +23,10 @@ class Mayhem:
             if event.type == pygame.QUIT:
                 self.runGame = False
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.runGame = False
+                    sys.exit()
 
     def Update(self):
         pass
