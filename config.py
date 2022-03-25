@@ -4,7 +4,7 @@ UiT, Institute of Computer Science
 
 Module containing all constants used in the game.
 """
-
+# Defining a class with the constants used in the game
 class Config:
     """
     Class containing all constants used in the game
@@ -14,7 +14,7 @@ class Config:
     HEIGHT = 800
     # Color for the background of the screen
     BLACK = "#000000"
-    # Colors
+    # Set of colors
     RED = "#ff0000"
     WHITE = "#ffffff"
     BLUE = "#00ff00"
@@ -24,3 +24,8 @@ class Config:
     maxFuel = 100
     # Defining radius of bullets
     RADIUS = 5
+    # Setting max speed of bullets
+    maxSpeed = 500
+
+
+
