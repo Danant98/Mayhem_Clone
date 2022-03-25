@@ -16,7 +16,7 @@ class Mayhem:
     """
     def __init__(self, *argv):
         pygame.init()
-        self.SCREEN = pygame.display.set_mode([WIDHT, HEIGHT])
+        self.SCREEN = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.clock = pygame.time.Clock()
         self.runGame = True
         self.FPS = 30
