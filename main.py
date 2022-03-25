@@ -9,8 +9,11 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 import pygame
 import sys
 from config import HEIGHT, WIDHT, BLACK
-#
+# Defining main game class 
 class Mayhem:
+    """
+    Class object to represent the main game loop
+    """
     def __init__(self, *argv):
         pygame.init()
         self.SCREEN = pygame.display.set_mode([WIDHT, HEIGHT])
