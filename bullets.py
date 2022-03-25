@@ -27,4 +27,7 @@ class Bullet(pygame.sprite.Sprite):
         self.speedY = 0
         self.vel = vector(self.speedX, self.speedY)
 
+    def draw(self):
+        pygame.draw.circle(self.SCREEN, self.COLOR, (self.pos.x, self.pos.y), self.R)
+
 

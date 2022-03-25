@@ -1,5 +1,5 @@
 """
-Making class vector to make it easier to work with vector objects in the simulation
+Making class vector to make it easier to work with vector objects
 """
 # Importing libraries
 import numpy as np
