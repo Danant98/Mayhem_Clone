@@ -16,10 +16,10 @@ class Mayhem:
     """
     def __init__(self, *argv):
         pygame.init()
-        self.SCREEN = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.SCREEN = pygame.display.set_mode([WIDHT, HEIGHT])
         self.clock = pygame.time.Clock()
         self.runGame = True
-        self.FPS = 30
+        self.FPS = 60
 
     def EventHandler(self):
         for event in pygame.event.get():
