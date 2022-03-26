@@ -1,5 +1,7 @@
 """
 Making class vector to make it easier to work with vector objects
+
+NB! This module was originally written as a part of mandatory assignment 2; Boids
 """
 # Importing libraries
 import numpy as np
