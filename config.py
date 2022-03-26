@@ -27,5 +27,9 @@ class Config:
     # Setting max speed of bullets
     maxSpeed = 500
 
+    # Defing size of platform 
+    platformWIDTH = 80
+    platformHEIGHT = 40
+
 
 
