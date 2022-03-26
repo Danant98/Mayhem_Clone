@@ -13,11 +13,11 @@ class Bullet(pygame.sprite.Sprite):
     """
     Class object to represent the bullets
     """
-    def __init__(self, x, y, angle):
+    def __init__(self, x, y, angle, SCREEN):
         # Constructor form parent class 
         super().__init__()
         # Setting the background screen of which we draw the bullets on 
-        #self.SCREEN = SCREEN        
+        self.SCREEN = SCREEN        
         # Defining the position, radius of the bullets and color 
         self.pos = vector(x, y)
         self.R = Config.RADIUS
@@ -29,7 +29,7 @@ class Bullet(pygame.sprite.Sprite):
         self.maxSpeed = Config.maxSpeed
         # Setting angle the bullet is shoot out in
         self.angle = angle
-        #self.rect = self.draw()
+        self.rect = self.draw()
     
     def crashWithBoundaries(self):
         """
@@ -63,10 +63,10 @@ class Bullet(pygame.sprite.Sprite):
         """
         self.motion(time)
         self.crashWithBoundaries()
-        #self.rect = self.draw()
+        self.rect = self.draw()
 
-bullet = Bullet(20, 20, 0)
 if __name__ == "__main__":
+    bullet = Bullet(20, 20, 0)
     bullet.motion(0)
     print(bullet.pos)
     bullet.motion(1)
