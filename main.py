@@ -40,7 +40,7 @@ class Mayhem:
     def Main(self):
         while self.runGame:
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
-            time = self.clock.tick(self.FPS) / 1000 # To get time in sec
+            time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.fill(Config.BLACK)
             self.EventHandler()
             self.Draw()
