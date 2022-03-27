@@ -21,7 +21,7 @@ class startPlatform(pygame.sprite.Sprite):
         self.IMAGE = pygame.Surface([Config.platformWIDTH, Config.platformHEIGHT])
         # Defining teh color of the platform
         self.COLOR = COLOR
-        # Feching a rectangular object to represent the platforms
+        # Feching a rectangular object from the drawing to represent the platform as a sprite
         self.rect = self.draw()
         # Defining the position of the platform
         self.rect.pos = vector(x, y)
