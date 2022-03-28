@@ -27,11 +27,10 @@ class Mayhem:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.runGame = False
-                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.runGame = False
-                    sys.exit()
+                    
 
     def Update(self):
         self.platform1.update()
@@ -44,6 +43,8 @@ class Mayhem:
             self.SCREEN.fill(Config.BLACK)
             self.EventHandler()
             self.Update()
+        pygame.quit()
+        sys.exit()
 
 if __name__ == "__main__":
     game = Mayhem()
