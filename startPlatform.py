@@ -23,8 +23,6 @@ class Platform(pygame.sprite.Sprite):
         self.image.fill(COLOR)
         # Feching a rectangular object from the drawing to represent the platform as a sprite
         self.rect = self.image.get_rect()
+        # Defining the position of the platform
         self.rect.x = x
         self.rect.y = y
-        # Defining the position of the platform as a vector
-        self.pos = vector(int(self.rect.x), int(self.rect.y))
-
