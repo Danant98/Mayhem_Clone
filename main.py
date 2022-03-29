@@ -24,7 +24,7 @@ class Mayhem:
         # Setting FPS
         self.FPS = 60
         # Calling platform object
-        self.platform1 = Platform(200, 200, Config.RED, self.SCREEN)
+        self.platform1 = Platform(200, 200, Config.RED)
         self.allSprites = pygame.sprite.Group()
         self.allSprites.add(self.platform1)
 
