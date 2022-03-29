@@ -8,7 +8,7 @@ import pygame
 from Vector import vector
 from config import Config
 # Defining class object platform to represent the platform 
-class startPlatform(pygame.sprite.Sprite):
+class Platform(pygame.sprite.Sprite):
     """
     Class object to represent the platform
     """
@@ -18,23 +18,13 @@ class startPlatform(pygame.sprite.Sprite):
         # Defining the background in which the platform is drawn on
         self.SCREEN = SCREEN
         # Defining the size and color of the platform
-        self.IMAGE = pygame.Surface([Config.platformWIDTH, Config.platformHEIGHT])
-        # Defining teh color of the platform
-        self.COLOR = COLOR
+        self.image = pygame.Surface([Config.platformWIDTH, Config.platformHEIGHT]).convert_alpha()
+        # Defining the color of the platform
+        self.image.fill(COLOR)
         # Feching a rectangular object from the drawing to represent the platform as a sprite
-        self.rect = self.draw()
-        # Defining the position of the platform
-        self.rect.pos = vector(x, y)
-        
-    def draw(self):
-        """
-        Method to draw the platform on the screen
-        """
-        pygame.draw.rect(self.SCREEN, self.COLOR, (self.rect.pos.x, self.rect.pos.y), self.IMAGE)
-
-    def update(self):
-        """
-        Method to handele updating the object
-        """
-        self.draw()
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        # Defining the position of the platform as a vector
+        self.pos = vector(int(self.rect.x), int(self.rect.y))
 

@@ -9,7 +9,7 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 import pygame
 import sys
 from config import Config
-from platform import startPlatform
+from startPlatform import Platform
 # Defining main game class 
 class Mayhem:
     """
@@ -17,11 +17,16 @@ class Mayhem:
     """
     def __init__(self, *argv):
         pygame.init()
+        # Defining screen display 
         self.SCREEN = pygame.display.set_mode([Config.WIDTH, Config.HEIGHT])
         self.clock = pygame.time.Clock()
         self.runGame = True
+        # Setting FPS
         self.FPS = 60
-        self.platform1 = startPlatform(200, 200, Config.RED, self.SCREEN)
+        # Calling platform object
+        self.platform1 = Platform(200, 200, Config.RED, self.SCREEN)
+        self.allSprites = pygame.sprite.Group()
+        self.allSprites.add(self.platform1)
 
     def EventHandler(self):
         for event in pygame.event.get():
@@ -33,7 +38,7 @@ class Mayhem:
                     
 
     def Update(self):
-        self.platform1.update()
+        self.allSprites.draw(self.SCREEN)
         pygame.display.update()
 
     def Main(self):

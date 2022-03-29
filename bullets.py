@@ -23,8 +23,6 @@ class Bullet(pygame.sprite.Sprite):
         self.R = Config.RADIUS
         self.COLOR = Config.WHITE
         # Defining the velocity of the bullets
-        #self.speedX = 0
-        #self.speedY = 0
         self.vel = vector(0, 0)
         self.maxSpeed = Config.maxSpeed
         # Setting angle the bullet is shoot out in
@@ -37,21 +35,21 @@ class Bullet(pygame.sprite.Sprite):
         Method to determine the action of the bullets with the screen wall
         """
         # If the bullet hits the boundaries of the screen, the bullet is removed from the spritegroup using kill method from sprites 
-        if self.x - self.R < 0:
+        if self.pos.x - self.R < 0:
             self.kill()
-        elif self.x + self.R > self.SCREEN.WIDTH:
+        elif self.pos.x + self.R > self.SCREEN.WIDTH:
             self.kill()
-        elif self.y - self.R < 0:
+        elif self.pos.y - self.R < 0:
             self.kill()
-        elif self.y + self.R > self.SCREEN.HEIGHT:
+        elif self.pos.y + self.R > self.SCREEN.HEIGHT:
             self.kill()
 
     def motion(self, time):
         """
-        Method to determine the motion of the bullet which is constant
+        Method to determine the motion of the bullet which is constant in x-direction and affected by gravity in the y-direction
         """
         self.vel += vector(self.maxSpeed * np.cos(np.deg2rad(self.angle)) * time, 
-                           self.maxSpeed * -np.sin(np.deg2rad(self.angle)) * time)
+                           self.maxSpeed * -np.sin(np.deg2rad(self.angle)) * time * Config.GRAVITY)
         # Updating position using the velocity
         self.pos += self.vel 
 

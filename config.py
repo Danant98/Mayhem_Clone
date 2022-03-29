@@ -20,7 +20,7 @@ class Config:
     BLUE = "#00ff00"
     GREEN = "#0000ff"
     # Defining constants for gravity and startingfuel
-    GRAVITY= 10
+    GRAVITY = 10
     maxFuel = 100
     # Defining radius of bullets
     RADIUS = 5
@@ -28,8 +28,8 @@ class Config:
     maxSpeed = 500
 
     # Defing size of platform 
-    platformWIDTH = 80
-    platformHEIGHT = 40
+    platformWIDTH = 100
+    platformHEIGHT = 20
 
 
 
