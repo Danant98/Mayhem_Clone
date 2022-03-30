@@ -5,8 +5,6 @@ UiT, Institute of Computer Science
 Module containing all constants used in the game.
 """
 # Defining a class with the constants used in the game
-from platform import platform
-
 
 class Config:
     """
