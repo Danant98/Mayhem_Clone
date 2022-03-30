@@ -8,6 +8,7 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 # Importing modules and libratries
 import pygame
 import sys
+import os
 from config import Config
 from startPlatform import Platform
 from player import Player
@@ -20,7 +21,7 @@ class Mayhem:
         pygame.init()
         # Defining screen display 
         self.SCREEN = pygame.display.set_mode([Config.WIDTH, Config.HEIGHT])
-        self.BG = pygame.image.load("futuristic_city.jpg").convert_alpha()
+        self.BG = pygame.image.load(os.path.join("resources", "futuristic_city.jpg")).convert_alpha()
         # Rescaling the background image
         self.BG = pygame.transform.smoothscale(self.BG, (Config.WIDTH, Config.HEIGHT))
         # Setting the cloks
