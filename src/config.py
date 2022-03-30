@@ -36,7 +36,11 @@ class Config:
     # Platform initial position
     platformX = 20
     platformY = HEIGHT / 2
+
+    # playerhitbox
+    playerHitboxW = 100
+    playerHitboxH = 100
+    
     # Player 1 initial position
     player1X = platformX + (platformWIDTH / 2)
-    player1Y = platformY 
-
+    player1Y = platformY - playerHitboxH

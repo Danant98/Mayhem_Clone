@@ -32,7 +32,7 @@ class Mayhem:
         self.allSprites = pygame.sprite.Group()
         self.allSprites.add(self.platform1)
         # Calling player object
-        self.player1 = Player(Config.player1X, Config.player1Y, Config.BLUE, self.SCREEN)
+        self.player1 = Player(Config.player1X, Config.player1Y, Config.WHITE, self.SCREEN)
         self.allSprites.add(self.player1)
 
     def EventHandler(self):
@@ -47,6 +47,7 @@ class Mayhem:
     def Update(self):
         self.allSprites.draw(self.SCREEN)
         pygame.display.update()
+        
 
     def Main(self):
         while self.runGame:
