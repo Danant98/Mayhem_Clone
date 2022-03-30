@@ -5,7 +5,6 @@ Class object platform to represent the platforms the players start on and refuel
 """
 # Importing libraries and modules
 import pygame
-from Vector import vector
 from config import Config
 # Defining class object platform to represent the platform 
 class Platform(pygame.sprite.Sprite):
