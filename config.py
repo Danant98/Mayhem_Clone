@@ -5,6 +5,9 @@ UiT, Institute of Computer Science
 Module containing all constants used in the game.
 """
 # Defining a class with the constants used in the game
+from platform import platform
+
+
 class Config:
     """
     Class containing all constants used in the game
@@ -28,8 +31,12 @@ class Config:
     maxSpeed = 500
 
     # Defing size of platform 
-    platformWIDTH = 100
-    platformHEIGHT = 20
-
-
+    platformWIDTH = WIDTH // 8
+    platformHEIGHT = HEIGHT // 35
+    # Platform initial position
+    platformX = 20
+    platformY = HEIGHT / 2
+    # Player 1 initial position
+    player1X = platformX + (platformWIDTH / 2)
+    player1Y = platformY 
 
