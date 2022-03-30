@@ -37,11 +37,11 @@ class Bullet(pygame.sprite.Sprite):
         # If the bullet hits the boundaries of the screen, the bullet is removed from the spritegroup using kill method from sprites 
         if self.pos.x - self.R < 0:
             self.kill()
-        elif self.pos.x + self.R > self.SCREEN.WIDTH:
+        if self.pos.x + self.R > self.SCREEN.WIDTH:
             self.kill()
-        elif self.pos.y - self.R < 0:
+        if self.pos.y - self.R < 0:
             self.kill()
-        elif self.pos.y + self.R > self.SCREEN.HEIGHT:
+        if self.pos.y + self.R > self.SCREEN.HEIGHT:
             self.kill()
 
     def motion(self, time):

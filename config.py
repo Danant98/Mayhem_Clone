@@ -13,8 +13,8 @@ class Config:
     Class containing all constants used in the game
     """
     # Defining height and width of the screen window
-    WIDTH = 1000
-    HEIGHT = 800
+    WIDTH = 2000
+    HEIGHT = 1500
     # Color for the background of the screen
     BLACK = "#000000"
     # Set of colors
