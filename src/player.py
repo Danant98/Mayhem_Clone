@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
     Class object to represent the players
     """
     def __init__(self, x, y, color, SCREEN):
-        # Constructor form parent class 
+        # Constructor from parent class 
         super().__init__()
         self.pos = vector(x, y)
         self.SCREEN = SCREEN
