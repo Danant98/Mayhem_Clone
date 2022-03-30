@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.color = color
         self.fuel = Config.maxFuel
         self.gravity = Config.GRAVITY
-        self.image = pygame.Surface([self.pos[0], self.pos[1]], pygame.SRCALPHA)
+        self.image = pygame.Surface([100, 100], pygame.SRCALPHA)
         self.rect = self.image.get_rect()
     
 
