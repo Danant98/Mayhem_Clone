@@ -28,9 +28,3 @@ class Player(pygame.sprite.Sprite):
         self.points = [(0, 0), (100, 50), (0, 100)]
         pygame.draw.polygon(self.image, self.COLOR, self.points)
 
-        
-        
-
-
-
-
