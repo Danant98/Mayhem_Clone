@@ -10,6 +10,7 @@ import pygame
 import sys
 from config import Config
 from startPlatform import Platform
+from player import Player
 # Defining main game class 
 class Mayhem:
     """
@@ -27,6 +28,9 @@ class Mayhem:
         self.platform1 = Platform(Config.platformX, Config.platformY, Config.RED)
         self.allSprites = pygame.sprite.Group()
         self.allSprites.add(self.platform1)
+        # Calling player object
+        self.player1 = Player(Config.player1X, Config.player1Y, Config.BLUE, self.SCREEN)
+        self.allSprites.add(self.player1)
 
     def EventHandler(self):
         for event in pygame.event.get():

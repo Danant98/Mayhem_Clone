@@ -12,16 +12,23 @@ class Player(pygame.sprite.Sprite):
     """
     Class object to represent the players
     """
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, SCREEN):
         # Constructor form parent class 
         super().__init__()
         self.pos = vector(x, y)
+        self.SCREEN = SCREEN
         self.color = color
         self.fuel = Config.maxFuel
         self.gravity = Config.GRAVITY
+<<<<<<< HEAD
+=======
+        self.image = self.draw()
+        self.rect = self.image.get_rect()
+>>>>>>> 2e030e0ef912460236f6d53a1b26ccdb03d3b1f7
 
     def draw(self):
-        pass
+        return pygame.draw.polygon(self.SCREEN, self.color, ((25,75),(76,125),(250,375)))
+        
 
 
 
