@@ -6,9 +6,7 @@ Uit, Institute of Computer Science, 2022
 Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Object-oriented programming.
 """
 # Importing modules and libratries
-import pygame
-import sys
-import os
+import pygame , sys, os
 from config import Config
 from startPlatform import Platform
 from player import Player
