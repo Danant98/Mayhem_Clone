@@ -20,11 +20,12 @@ class Player(pygame.sprite.Sprite):
         self.color = color
         self.fuel = Config.maxFuel
         self.gravity = Config.GRAVITY
-        self.image = self.draw()
+        self.image = pygame.Surface([100, 100], pygame.SRCALPHA)
         self.rect = self.image.get_rect()
+    
 
     def draw(self):
-        return pygame.draw.polygon(self.SCREEN, self.color, ((25,75),(76,125),(250,375)))
+        pygame.draw.polygon(self.image, self.color, ([(25,75),(76,125),(250,375)]))
         
 
 
