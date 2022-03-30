@@ -20,17 +20,21 @@ class Mayhem:
         pygame.init()
         # Defining screen display 
         self.SCREEN = pygame.display.set_mode([Config.WIDTH, Config.HEIGHT])
+        self.BG = pygame.image.load("futuristic_city.jpg").convert_alpha()
+        # Rescaling the background image
+        self.BG = pygame.transform.smoothscale(self.BG, (Config.WIDTH, Config.HEIGHT))
+        # Setting the cloks
         self.clock = pygame.time.Clock()
         self.runGame = True
         # Setting FPS
         self.FPS = 60
         # Calling platform object
-        self.platform1 = Platform(Config.platformX, Config.platformY, Config.RED)
+        self.platform1 = Platform(Config.platformX, Config.platformY, Config.WHITE)
         self.allSprites = pygame.sprite.Group()
         self.allSprites.add(self.platform1)
         # Calling player object
-        self.player1 = Player(Config.player1X, Config.player1Y, Config.BLUE, self.SCREEN)
-        self.allSprites.add(self.player1)
+        #self.player1 = Player(Config.player1X, Config.player1Y, Config.BLUE, self.SCREEN)
+        #self.allSprites.add(self.player1)
 
     def EventHandler(self):
         for event in pygame.event.get():
@@ -49,7 +53,7 @@ class Mayhem:
         while self.runGame:
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
-            self.SCREEN.fill(Config.BLACK)
+            self.SCREEN.blit(self.BG, (0, 0))
             self.EventHandler()
             self.Update()
         pygame.quit()
