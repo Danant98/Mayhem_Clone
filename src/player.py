@@ -19,18 +19,25 @@ class Player(pygame.sprite.Sprite):
         self.COLOR = COLOR
         self.fuel = Config.maxFuel
         self.GRAVITY = Config.GRAVITY
-        self.image = pygame.Surface([Config.playerHitboxW, Config.playerHitboxH], pygame.SRCALPHA)
+        self.image = pygame.Surface([Config.playerHitboxW, Config.playerHitboxH] ,pygame.SRCALPHA)
         #pygame.draw.circle(self.image, (255, 255, 255), (Config.playerHitboxW / 2, Config.playerHitboxW / 2), Config.playerHitboxW / 2 )
-        pygame.draw.polygon(self.image, self.COLOR, [(Config.platformX, Config.platformY),
-                                                    (Config.platformX, Config.platformY + 100),
-                                                    (Config.platformX + 100, Config.platformY + 50)])
         self.rect = self.image.get_rect()
         self.rect.x = x - (Config.playerHitboxW / 2)
         self.rect.y = y
 
-    #def draw(self):
-     #   pygame.draw.polygon(self.image, self.color, ([(self.rect.x + 50, self.rect.y),(self.rect.x, self.rect.y + 100), (self.rect.x + 100, self.rect.y + 100)]))
-        
+    def draw(self):
+        """
+        Method to draw the player on the screen
+        """
+        pygame.draw.polygon(self.image, self.COLOR, [(0, 0),
+                                                    (self.image.get_width(), 100),
+                                                    (self.image.get_width(), 50)])
+
+    def update(self):
+        """
+        Method to update the object on the screen
+        """
+        self.draw()
 
 
 
