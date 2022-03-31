@@ -24,5 +24,5 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x - (Config.playerHitboxW / 2)
         self.rect.y = y
-        self.points = [(0, 0), (100, 50), (0, 100)]
+        self.points = [(0, 0), (20, 10), (0, 20)]
         pygame.draw.polygon(self.image, self.COLOR, self.points)

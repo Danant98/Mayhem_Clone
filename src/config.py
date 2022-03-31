@@ -11,8 +11,8 @@ class Config:
     Class containing all constants used in the game
     """
     # Defining height and width of the screen window
-    WIDTH = 2000
-    HEIGHT = 1500
+    WIDTH = 900
+    HEIGHT = 700
     # Color for the background of the screen
     BLACK = "#000000"
     # Set of colors
@@ -27,18 +27,17 @@ class Config:
     RADIUS = 5
     # Setting max speed of bullets
     maxSpeed = 500
-
     # Defing size of platform 
     platformWIDTH = WIDTH // 8
     platformHEIGHT = HEIGHT // 35
     # Platform initial position
     platformX = 20
     platformY = HEIGHT / 2
-
     # playerhitbox
-    playerHitboxW = 100
-    playerHitboxH = 100
-    
+    playerHitboxW = 20
+    playerHitboxH = 20
     # Player 1 initial position
     player1X = platformX + (platformWIDTH / 2)
     player1Y = platformY - playerHitboxH
+    # Obstrcle radius
+    obsticleSIZE = 20
