@@ -18,8 +18,8 @@ class Config:
     # Set of colors
     RED = "#ff0000"
     WHITE = "#ffffff"
-    BLUE = "#00ff00"
-    GREEN = "#0000ff"
+    GREEN = "#00ff00"
+    BLUE = "#0000ff"
     # Defining constants for gravity and startingfuel
     GRAVITY = 10
     maxFuel = 100
@@ -40,4 +40,4 @@ class Config:
     player1X = platformX + (platformWIDTH / 2)
     player1Y = platformY - playerHitboxH
     # Obstrcle radius
-    obsticleSIZE = 20
+    obsticleSIZE = 60

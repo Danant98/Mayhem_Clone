@@ -39,10 +39,12 @@ class Mayhem:
         # Add object player to sprite group
         self.allSprites.add(self.player1)
         # Calling obsticle object 
-        obsticle1 = Obsticle(random.randint(50, Config.WIDTH - 50), 
-                             random.randint(Config.obsticleSIZE , Config.HEIGHT - Config.obsticleSIZE), Config.GREEN)
+        obsticle1 = Obsticle(Config.WIDTH / 2, 
+                             Config.HEIGHT / 2, 
+                             Config.GREEN)
         # Add object obsticle to sprite group
         self.allSprites.add(obsticle1)
+
 
     def EventHandler(self):
         for event in pygame.event.get():
