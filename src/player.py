@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.fuel = Config.maxFuel
         self.GRAVITY = Config.GRAVITY
         self.startPos = startPos
+        self.angle = Config.startingAngle
         # Setting 
         self.HIT = False 
         # Loading in image of spaceship
@@ -29,6 +30,8 @@ class Player(pygame.sprite.Sprite):
         # Defining position for the object
         self.rect.x = self.startPos.x - (self.image.get_width() / 2)
         self.rect.y = self.startPos.y - (self.image.get_height() / 2)
+        # Defining staring velocity of spaceship
+        self.vel = vector(0, 0)
     
     def collWithBoundaries(self):
         """
@@ -37,7 +40,14 @@ class Player(pygame.sprite.Sprite):
         pass 
 
     def resetSpaceship(self):
+        """
+        Method to reset the spaceship to start position
+        """
+        # Setting position back to starting position
         self.rect.x = self.startPos.x - (self.image.get_width() / 2)
         self.rect.y = self.startPos.y - (self.image.get_height() / 2)
-
+        # Setting the velocity back to initial velocity
+        self.vel = vector(0, 0)
+        # Setting angle bakc to starting angle
+        self.angle = Config.startingAngle
 

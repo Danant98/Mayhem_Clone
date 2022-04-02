@@ -6,6 +6,7 @@ Module containing all constants used in the game.
 """
 # Importing modules and libraries
 import pygame
+import numpy as np
 # Defining a class with the constants used in the game
 class Config:
     """
@@ -34,12 +35,11 @@ class Config:
     # Platform initial position
     platformX = 20
     platformY = HEIGHT - 100
-    # playerhitbox
-    playerHitboxW = 20
-    playerHitboxH = 20
+    # Defining starting angle for spaceship objects
+    startingAngle = (3/2)*np.pi
     # Player 1 initial position
     player1X = platformX + (platformWIDTH / 2)
-    player1Y = platformY - playerHitboxH
+    player1Y = platformY - 20
     # Defining controls for the two player objects 
     controlARROWS = {'LEFT': pygame.K_LEFT, 'RIGHT': pygame.K_RIGHT, 
                     'THRUST': pygame.K_UP, 'BOOST': pygame.K_DOWN, 'FIRE': pygame.K_RETURN}
