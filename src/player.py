@@ -50,4 +50,6 @@ class Player(pygame.sprite.Sprite):
         self.vel = vector(0, 0)
         # Setting angle bakc to starting angle
         self.angle = Config.startingAngle
+        # Setting fuel to max fuel
+        self.fuel = Config.maxFuel
 
