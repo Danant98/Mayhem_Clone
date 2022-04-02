@@ -4,8 +4,9 @@ UiT, Institute of Computer Science
 
 Module containing all constants used in the game.
 """
+# Importing modules and libraries
+import pygame
 # Defining a class with the constants used in the game
-
 class Config:
     """
     Class containing all constants used in the game
@@ -32,12 +33,20 @@ class Config:
     platformHEIGHT = HEIGHT // 35
     # Platform initial position
     platformX = 20
-    platformY = HEIGHT / 2
+    platformY = HEIGHT - 100
     # playerhitbox
     playerHitboxW = 20
     playerHitboxH = 20
     # Player 1 initial position
     player1X = platformX + (platformWIDTH / 2)
     player1Y = platformY - playerHitboxH
+    # Defining controls for the two player objects 
+    controlARROWS = {'LEFT': pygame.K_LEFT, 'RIGHT': pygame.K_RIGHT, 
+                    'THRUST': pygame.K_UP, 'BOOST': pygame.K_DOWN, 'FIRE': pygame.K_RETURN}
+    controlASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 'THRUST': pygame.K_w, 
+                    'BOOST': pygame.K_s, 'FIRE': pygame.K_1}
     # Obstrcle radius
-    obsticleSIZE = 60
+    obsticleSIZE = 100
+
+
+

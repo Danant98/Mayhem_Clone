@@ -8,6 +8,7 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 # Importing modules and libratries
 import pygame , sys, os, random
 from config import Config
+from Vector import vector
 from startPlatform import Platform
 from player import Player
 from obsticle import Obsticle
@@ -29,13 +30,18 @@ class Mayhem:
         # Setting FPS
         self.FPS = 60
         # Calling platform object
-        self.platform1 = Platform(Config.platformX, Config.platformY, Config.WHITE)
+        self.platform1 = Platform(Config.platformX, 
+                                  Config.platformY, 
+                                  Config.WHITE)
         # Creating sprite group containng all sprites objects
         self.allSprites = pygame.sprite.Group()
         # Add object platform to sprite group
         self.allSprites.add(self.platform1)
         # Calling player object
-        self.player1 = Player(Config.player1X, Config.player1Y, Config.RED, self.SCREEN)
+        self.player1 = Player("spaceship1.png", 
+                             vector(Config.player1X, Config.player1Y), 
+                              Config.controlARROWS, 
+                              self.SCREEN)
         # Add object player to sprite group
         self.allSprites.add(self.player1)
         # Calling obsticle object 
