@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         # Setting 
         self.HIT = False 
         # Loading in image of spaceship
-        self.image =pygame.image.load(os.path.join("resources", spaceshipImage)).convert_alpha()
+        self.image = pygame.image.load(os.path.join("resources", spaceshipImage)).convert_alpha()
         # Feching rectangular object to represent the spaceship as a sprite
         self.rect = self.image.get_rect()
         # Defining position for the object
