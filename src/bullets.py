@@ -17,7 +17,7 @@ class Bullet(pygame.sprite.Sprite):
         # Constructor form parent class 
         super().__init__()        
         # Defining a surface to draw the bullet on and drawing it as a circle
-        self.image = pygame.Surface([Config.RADIUS, Config.RADIUS])
+        self.image = pygame.Surface([Config.RADIUS, Config.RADIUS]).convert_alpha()
         pygame.draw.circle(self.image, 
                            Config.WHITE, 
                            (self.image.get_widht() / 2, 
@@ -48,8 +48,8 @@ class Bullet(pygame.sprite.Sprite):
         """
         Method to determine the motion of the bullet which is constant in x-direction and affected by gravity in the y-direction
         """
-        self.vel += vector(self.maxSpeed * np.cos(np.deg2rad(self.angle)) * time, 
-                           self.maxSpeed * -np.sin(np.deg2rad(self.angle)) * time * Config.GRAVITY)
+        self.vel += vector(self.maxSpeed * np.cos(self.angle) * time, 
+                           self.maxSpeed * -np.sin(self.angle) * time)
         # Updating position using the velocity
         self.rect.x += self.vel.x
         self.rect.y += self.vel.y

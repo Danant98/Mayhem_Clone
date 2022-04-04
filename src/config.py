@@ -22,11 +22,12 @@ class Config:
     WHITE = "#ffffff"
     GREEN = "#00ff00"
     BLUE = "#0000ff"
-    # Defining constants for gravity and startingfuel
+    # Defining constants for gravity, startingfuel and constant fueling 
     GRAVITY = 10
     maxFuel = 100
+    fueling = 10
     # Defining radius of bullets
-    RADIUS = 5
+    RADIUS = 4
     # Setting max speed of bullets
     maxSpeed = 500
     # Defing size of platform 
@@ -37,6 +38,8 @@ class Config:
     platformY = HEIGHT - 100
     # Defining starting angle, staring score and starting health for spaceship objects
     startingAngle = (3/2)*np.pi
+    diffAngle = 0.1
+    acceleration = 10
     playerScore = 0
     startingHealth = 100
     # Player 1 initial position
@@ -44,9 +47,9 @@ class Config:
     player1Y = platformY - 20
     # Defining controls for the two player objects 
     ARROWS = {'LEFT': pygame.K_LEFT, 'RIGHT': pygame.K_RIGHT, 
-                    'THRUST': pygame.K_UP, 'BOOST': pygame.K_DOWN, 'FIRE': pygame.K_RETURN}
-    ASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 'THRUST': pygame.K_w, 
-                    'BOOST': pygame.K_s, 'FIRE': pygame.K_1}
+              'THRUST': pygame.K_UP, 'FIRE': pygame.K_RETURN}
+    ASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 
+            'THRUST': pygame.K_w, 'FIRE': pygame.K_1}
     # Obstrcle radius
     obsticleSIZE = 100
 

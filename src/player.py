@@ -7,6 +7,7 @@ File containg the class object to represent the player
 import pygame, os
 from Vector import vector
 from config import Config
+import numpy as np
 # Defining object player class
 class Player(pygame.sprite.Sprite):
     """
@@ -23,6 +24,9 @@ class Player(pygame.sprite.Sprite):
         self.angle = Config.startingAngle
         # Defining if spaceship is hit or not
         self.HIT = False 
+        # Defining if the thurst is activated 
+        self.fueling = False
+        self.THRUST = True
         # Setting score for player
         self.score = Config.playerScore
         # Setting starting health 
@@ -36,8 +40,11 @@ class Player(pygame.sprite.Sprite):
         # Defining position for the object
         self.rect.x = self.startPos.x - (self.image.get_width() / 2)
         self.rect.y = self.startPos.y - (self.image.get_height() / 2)
-        # Defining staring velocity of spaceship
+        # Defining staring velocity and acceleration of the spaceship
         self.vel = vector(0, 0)
+        self.acc = vector(0, 0)
+        # Defining the center of the spaceship
+        
     
     def collWithBoundaries(self):
         """
@@ -76,4 +83,24 @@ class Player(pygame.sprite.Sprite):
         self.fuel = Config.maxFuel
         # Resetting health
         self.health = Config.startingHealth
+        # The player's score is reduced by 1 if player collides
+        if self.HIT and self.score != 0:
+            self.score -= 1
 
+    def rotate(self):
+        center_img = vector(self.rect.x + (self.image.get_width()/2), 
+                        self.rect.y + (self.image.get_height()/2))
+        rotate_Spaceship = pygame.transform.rotate(self.image, self.angle + Config.diffAngle)
+        rotate_Spaceship_rect = rotate_Spaceship.get_rect(center = center_img)
+
+
+    def movement(self, time):
+    
+        # Adding velocity to position  
+        self.rect.x += self.vel.x
+        self.rect.y += self.vel.y
+            
+
+
+    def update(self):
+        pass

@@ -6,7 +6,7 @@ Uit, Institute of Computer Science, 2022
 Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Object-oriented programming.
 """
 # Importing modules and libratries
-import pygame , sys, os, random
+import pygame , sys, os
 from config import Config
 from Vector import vector
 from startPlatform import Platform
@@ -17,7 +17,7 @@ class Mayhem:
     """
     Class object to represent the main game loop
     """
-    def __init__(self, *argv):
+    def __init__(self):
         pygame.init()
         # Defining screen display 
         self.SCREEN = pygame.display.set_mode([Config.WIDTH, Config.HEIGHT])
@@ -42,6 +42,8 @@ class Mayhem:
                              vector(Config.player1X, Config.player1Y), 
                               Config.ARROWS, 
                               self.SCREEN)
+        # Defining list containing all players                      
+        self.spaceshipList = [self.player1]
         # Add object player to sprite group
         self.allSprites.add(self.player1)
         # Calling obsticle object 
@@ -53,20 +55,31 @@ class Mayhem:
 
 
     def EventHandler(self):
+        """
+        Method to handle event on the game screen
+        """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.runGame = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.runGame = False
+                # Definig actions if player push down 
+                for spaceship in self.spaceshipList:
+                    if event.key == spaceship.CONTROLS['LEFT']:
+                        spaceship.angle += Config.diffAngle
+                        
+
+    
     
     def collisionHandler(self):
         """
         Method to handle all collisions 
         """
         pass
-                    
 
+
+                    
     def Update(self):
         self.allSprites.draw(self.SCREEN)
         pygame.display.update()
@@ -78,6 +91,7 @@ class Mayhem:
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
             self.EventHandler()
+            self.collisionHandler()
             self.Update()
         pygame.quit()
         sys.exit()
