@@ -5,7 +5,6 @@ Module to represent the meny screen and render game text on screen
 """
 # Importing modules and libraries
 import pygame
-
 # Class object
 class Meny:
     """
