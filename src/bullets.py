@@ -13,35 +13,35 @@ class Bullet(pygame.sprite.Sprite):
     """
     Class object to represent the bullets
     """
-    def __init__(self, x, y, angle, SCREEN):
+    def __init__(self, x, y, angle):
         # Constructor form parent class 
-        super().__init__()
-        # Setting the background screen of which we draw the bullets on 
-        self.SCREEN = SCREEN        
-        # Defining the position, radius of the bullets and color 
-        self.pos = vector(x, y)
-        self.R = Config.RADIUS
-        self.COLOR = Config.WHITE
+        super().__init__()        
+        # Defining a surface to draw the bullet on and drawing it as a circle
+        self.image = pygame.Surface([Config.RADIUS, Config.RADIUS])
+        pygame.draw.circle(self.image, 
+                           Config.WHITE, 
+                           (self.image.get_widht() / 2, 
+                           self.image.get_height() / 2), 
+                           Config.RADIUS / 2)
+        # Defining the rectangular shape to represent the object as sprites
+        self.rect = self.image.get_rect()
+        # Defining the position of the sprite object
+        self.rect.x = x
+        self.rect.y = y
         # Defining the velocity of the bullets
         self.vel = vector(0, 0)
         self.maxSpeed = Config.maxSpeed
         # Setting angle the bullet is shoot out in
         self.angle = angle
-        # Defining the rect
-        self.rect = self.draw()
-    
+
     def crashWithBoundaries(self):
         """
         Method to determine the action of the bullets with the screen wall
         """
         # If the bullet hits the boundaries of the screen, the bullet is removed from the spritegroup using kill method from sprites 
-        if self.pos.x - self.R < 0:
+        if self.rect.x < 0 or self.rect.x + self.image.get_width() > Config.WIDTH:
             self.kill()
-        if self.pos.x + self.R > self.SCREEN.WIDTH:
-            self.kill()
-        if self.pos.y - self.R < 0:
-            self.kill()
-        if self.pos.y + self.R > self.SCREEN.HEIGHT:
+        if self.rect.y < 0 or self.rect.y + self.image.get_height() > Config.HEIGHT:
             self.kill()
 
     def motion(self, time):
@@ -51,13 +51,8 @@ class Bullet(pygame.sprite.Sprite):
         self.vel += vector(self.maxSpeed * np.cos(np.deg2rad(self.angle)) * time, 
                            self.maxSpeed * -np.sin(np.deg2rad(self.angle)) * time * Config.GRAVITY)
         # Updating position using the velocity
-        self.pos += self.vel 
-
-    def draw(self):
-        """
-        Method to draw the object on the screen
-        """
-        pygame.draw.circle(self.SCREEN, self.COLOR, (self.pos.x, self.pos.y), self.R)
+        self.rect.x += self.vel.x
+        self.rect.y += self.vel.y
 
     def update(self, time):
         """
@@ -65,11 +60,10 @@ class Bullet(pygame.sprite.Sprite):
         """
         self.motion(time)
         self.crashWithBoundaries()
-        self.rect = self.draw()
 
 if __name__ == "__main__":
     bullet = Bullet(20, 20, 0)
     bullet.motion(0)
-    print(bullet.pos)
+    print(bullet.rect.x, bullet.rect.y)
     bullet.motion(1)
-    print(bullet.pos)
+    print(bullet.rect.x, bullet.rect.y)
