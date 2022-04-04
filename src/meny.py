@@ -26,7 +26,7 @@ class Meny:
         Module to represent the game screen outlay
         """
         ## Render text for outlay of each player's score, lives, fuel and health
-        # Star by rendering for player 1
+        # Start by rendering for player 1
         player_1 = self.mediumScreenFont.render("Player 1", False, Config.WHITE)
         # Render text 
         healthBar = self.smallScreenFont.render("Health: " + str(player1.health) + "%", 1, Config.WHITE)
