@@ -17,15 +17,14 @@ class Meny:
         self.smallScreenFont = pygame.font.Sysfont("Helvetica", 20)
 
     def startScreen(self):
-        
+        pass 
 
-        
 
     def gameScreen(self):
         pass
 
 
-    def pauseMeny(self):
+    def pauseScreen(self):
         pass
 
 

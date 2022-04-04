@@ -68,6 +68,8 @@ class Mayhem:
                 for spaceship in self.spaceshipList:
                     if event.key == spaceship.CONTROLS['LEFT']:
                         spaceship.angle += Config.diffAngle
+                    if event.key == spaceship.CONTROLS['RIGHT']:
+                        spaceship.angle -= Config.diffAngle
                         
 
     
