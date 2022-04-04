@@ -35,7 +35,7 @@ class Config:
     platformHEIGHT = HEIGHT // 35
     # Platform initial position
     platformX = 20
-    platformY = HEIGHT - 100
+    platformY = HEIGHT - 200
     # Defining starting angle, staring score and starting health for spaceship objects
     startingAngle = (3/2)*np.pi
     diffAngle = 0.1

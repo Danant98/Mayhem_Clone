@@ -7,6 +7,7 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 """
 # Importing modules and libratries
 import pygame , sys, os
+from meny import Meny
 from config import Config
 from Vector import vector
 from startPlatform import Platform
@@ -33,26 +34,37 @@ class Mayhem:
         self.platform1 = Platform(Config.platformX, 
                                   Config.platformY, 
                                   Config.WHITE)
+        self.platform2 = Platform(Config.WIDTH - Config.platformWIDTH - 20, 
+                                  Config.platformY, 
+                                  Config.RED)
         # Creating sprite group containng all sprites objects
         self.allSprites = pygame.sprite.Group()
         # Add object platform to sprite group
         self.allSprites.add(self.platform1)
+        self.allSprites.add(self.platform2)
         # Calling player object
         self.player1 = Player("spaceship1.png", 
                              vector(Config.player1X, Config.player1Y), 
                               Config.ARROWS, 
                               self.SCREEN)
+        self.player2 = Player("spaceship2.png", 
+                               vector(Config.WIDTH - Config.platformWIDTH / 2 - 20, 
+                                      Config.player1Y),
+                                      Config.ASDW, 
+                                      self.SCREEN)
         # Defining list containing all players                      
-        self.spaceshipList = [self.player1]
+        self.spaceshipList = [self.player1, self.player2]
         # Add object player to sprite group
-        self.allSprites.add(self.player1)
+        for spaceship in self.spaceshipList:
+            self.allSprites.add(spaceship)
         # Calling obsticle object 
         obsticle1 = Obsticle(Config.WIDTH / 2, 
                              Config.HEIGHT / 2, 
                              Config.GREEN)
         # Add object obsticle to sprite group
         self.allSprites.add(obsticle1)
-
+        # Calling meny object
+        self.meny1 = Meny(self.SCREEN)
 
     def EventHandler(self):
         """
@@ -94,6 +106,7 @@ class Mayhem:
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
+            self.meny1.gameScreen(self.player1, self.player2)
             self.EventHandler()
             self.collisionHandler()
             self.Update()
