@@ -1,5 +1,5 @@
 """
-@authors: Daniel Elisabethsønn Antonsen and Håkon Alfred
+@authors: Daniel Elisabethsønn Antonsen and Håkon Alfred Bakker
 
 Module to represent the meny screen and render game text on screen
 """
