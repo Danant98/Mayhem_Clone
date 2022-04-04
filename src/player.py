@@ -21,8 +21,14 @@ class Player(pygame.sprite.Sprite):
         self.GRAVITY = Config.GRAVITY
         self.startPos = startPos
         self.angle = Config.startingAngle
-        # Setting 
+        # Defining if spaceship is hit or not
         self.HIT = False 
+        # Setting score for player
+        self.score = Config.playerScore
+        # Setting starting health 
+        self.health = Config.startingHealth
+        # Setting number of lives 
+        self.lives = 3
         # Loading in image of spaceship
         self.image = pygame.image.load(os.path.join("resources", spaceshipImage)).convert_alpha()
         # Feching rectangular object to represent the spaceship as a sprite
@@ -37,9 +43,25 @@ class Player(pygame.sprite.Sprite):
         """
         Method to determines the motion of the object if it collides with screen walls
         """
-        pass 
+        if self.rect.x < 0 or self.rect.x + self.image.get_width() > Config.WIDTH:
+            self.setToStart()
+        if self.rect.y < 0 or self.rect.y + self.image.get_height() > Config.HEIGHT:
+            self.setToStart()
+    
+    def hitByOtherPlayer(self):
+        """
+        Method to determine action if the player is hit by other player
+        """
+        # If the player is hit, ther players health bar goes down
+        if not self.HIT:
+            self.health -= 25
+            # If the health bar is zero, the players number of lives goes down and player is reset to the starting position
+            if self.health == 0:
+                self.lives -= 1
+                self.setToStart()
 
-    def resetSpaceship(self):
+
+    def setToStart(self):
         """
         Method to reset the spaceship to start position
         """
@@ -52,4 +74,6 @@ class Player(pygame.sprite.Sprite):
         self.angle = Config.startingAngle
         # Setting fuel to max fuel
         self.fuel = Config.maxFuel
+        # Reseting starting health
+        self.health = Config.startingHealth
 

@@ -35,15 +35,17 @@ class Config:
     # Platform initial position
     platformX = 20
     platformY = HEIGHT - 100
-    # Defining starting angle for spaceship objects
+    # Defining starting angle, staring score and starting health for spaceship objects
     startingAngle = (3/2)*np.pi
+    playerScore = 0
+    startingHealth = 100
     # Player 1 initial position
     player1X = platformX + (platformWIDTH / 2)
     player1Y = platformY - 20
     # Defining controls for the two player objects 
-    controlARROWS = {'LEFT': pygame.K_LEFT, 'RIGHT': pygame.K_RIGHT, 
+    ARROWS = {'LEFT': pygame.K_LEFT, 'RIGHT': pygame.K_RIGHT, 
                     'THRUST': pygame.K_UP, 'BOOST': pygame.K_DOWN, 'FIRE': pygame.K_RETURN}
-    controlASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 'THRUST': pygame.K_w, 
+    ASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 'THRUST': pygame.K_w, 
                     'BOOST': pygame.K_s, 'FIRE': pygame.K_1}
     # Obstrcle radius
     obsticleSIZE = 100
