@@ -70,10 +70,10 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = self.startPos.y - (self.image.get_height() / 2)
         # Setting the velocity back to initial velocity
         self.vel = vector(0, 0)
-        # Setting angle bakc to starting angle
+        # Resetting angle 
         self.angle = Config.startingAngle
-        # Setting fuel to max fuel
+        # Resetting fuel
         self.fuel = Config.maxFuel
-        # Reseting starting health
+        # Resetting health
         self.health = Config.startingHealth
 

@@ -27,7 +27,7 @@ class Bullet(pygame.sprite.Sprite):
         self.maxSpeed = Config.maxSpeed
         # Setting angle the bullet is shoot out in
         self.angle = angle
-        # Defiining a rect io
+        # Defining the rect
         self.rect = self.draw()
     
     def crashWithBoundaries(self):

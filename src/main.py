@@ -40,7 +40,7 @@ class Mayhem:
         # Calling player object
         self.player1 = Player("spaceship1.png", 
                              vector(Config.player1X, Config.player1Y), 
-                              Config.controlARROWS, 
+                              Config.ARROWS, 
                               self.SCREEN)
         # Add object player to sprite group
         self.allSprites.add(self.player1)
@@ -59,6 +59,12 @@ class Mayhem:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.runGame = False
+    
+    def collisionHandler(self):
+        """
+        Method to handle all collisions 
+        """
+        pass
                     
 
     def Update(self):
