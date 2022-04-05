@@ -87,13 +87,11 @@ class Player(pygame.sprite.Sprite):
         if self.HIT and self.score != 0:
             self.score -= 1
 
+
     def rotate(self):
-        center_img = vector(self.rect.x - (self.image.get_width()/2), 
-                            self.rect.y - (self.image.get_height()/2))
-        rotate_Spaceship = pygame.transform.rotate(self.image, np.rad2deg(self.angle))
-        return self.image.blit(rotate_Spaceship, center_img)
-        #rotate_Spaceship_rect = rotate_Spaceship.get_rect(center = center_img)
-        #return rotate_Spaceship, rotate_Spaceship_rect
+        rotatedSpaceship = pygame.transform.rotate(self.image, self.angle)# + np.pi/2)
+        center = (self.rect.x - rotatedSpaceship.get_rect().width / 2, self.rect.y - rotatedSpaceship.get_rect().height/2)
+        self.SCREEN.blit(rotatedSpaceship, center)
 
 
     def movement(self, time):
@@ -101,8 +99,6 @@ class Player(pygame.sprite.Sprite):
         # Adding velocity to position  
         self.rect.x += self.vel.x
         self.rect.y += self.vel.y
-            
-
-
+    
     def update(self):
         pass
