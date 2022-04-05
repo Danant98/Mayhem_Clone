@@ -23,9 +23,10 @@ class Config:
     GREEN = "#00ff00"
     BLUE = "#0000ff"
     # Defining constants for gravity, startingfuel and constant fueling 
-    GRAVITY = 2
+    GRAVITY = 1
     maxFuel = 100
     fueling = 10
+    diffFuel = 100
     # Defining radius of bullets
     RADIUS = 4
     # Setting max speed of bullets
@@ -37,9 +38,9 @@ class Config:
     platformX = 20
     platformY = HEIGHT - 200
     # Defining starting angle, staring score and starting health for spaceship objects
-    startingAngle = 0
+    startingAngle = 90
     diffAngle = 5
-    acceleration = 1
+    acceleration = 5
     playerScore = 0
     startingHealth = 100
     # Player 1 initial position

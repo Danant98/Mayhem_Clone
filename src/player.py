@@ -113,12 +113,13 @@ class Player(pygame.sprite.Sprite):
 
     def movement(self, time):
         self.vel.x += np.cos(self.angle) * self.thrust * time
-        self.vel.y += -np.sin(self.angle) * (self.thrust + Config.GRAVITY) * time
+        self.vel.y += ((-np.sin(self.angle)) * self.thrust + Config.GRAVITY) * time
 
         # Adding velocity to position  
         self.rect.x += self.vel.x
         self.rect.y += self.vel.y
     
-    def update(self):
+    def update(self, time):
+        self.collWithBoundaries()
         self.rotateDraw()
-        self.movement()
+        self.movement(time)

@@ -84,11 +84,20 @@ class Mayhem:
         keys = pygame.key.get_pressed()
         for spaceship in self.spaceshipList:
             if keys[spaceship.CONTROLS['LEFT']]:
+                # Adding on the angle to rotate the player conterclockwise
                 spaceship.angle += Config.diffAngle
             if keys[spaceship.CONTROLS['RIGHT']]:
+                # Subtracting the angle to rotate the player clockwise
                 spaceship.angle -= Config.diffAngle
-            if keys[spaceship.CONTROLS['THRUST']]:
-                spaceship.thrust += Config.acceleration
+            if keys[spaceship.CONTROLS['THRUST']] and spaceship.fuel > 0:
+                # Adding accelerating the player if thrust is activated
+                spaceship.thrust = Config.acceleration
+                # Constant fuel consumption
+                spaceship.fuel -= Config.diffFuel * time
+                # Setting so the player can not fuel and accelerate at the same time
+                spaceship.fueling = False
+            if not keys[spaceship.CONTROLS['THRUST']]:
+                spaceship.thrust = 0
             if keys[spaceship.CONTROLS['FIRE']]:
                 pass
 
@@ -100,8 +109,13 @@ class Mayhem:
         pass
 
                     
-    def Update(self):
-        self.allSprites.update()
+    def Update(self, time):
+        """
+        Method to update the sprites
+        """
+        for spaceship in self.spaceshipList:
+            spaceship.update(time)
+        #self.allSprites.update()
         pygame.display.update()
         
 
@@ -119,7 +133,7 @@ class Mayhem:
                 if spaceship.score == 5:
                     self.meny1.eScreen = True
             self.meny1.endScreen(self.player1, self.player2)
-            self.Update()
+            self.Update(time)
 
 if __name__ == "__main__":
     Mayhem().Main()
