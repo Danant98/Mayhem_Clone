@@ -68,7 +68,7 @@ class Menu:
             # Render pause text
             textPAUSE = self.bigScreenFont.render("PAUSE", False, Config.WHITE)
             textCON = self.mediumScreenFont.render("Press SPACEBAR to continue", False, Config.WHITE)
-            textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit to main menu", False, Config.WHITE)
+            textQUIT = self.mediumScreenFont.render("Press ESCAPE to exit game", False, Config.WHITE)
             # Checking for events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
