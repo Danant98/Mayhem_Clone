@@ -12,12 +12,16 @@ class Meny:
     Object to handle text on screen and menys the players is able to open
     """
     def __init__(self, SCREEN):
+        # Defining the background 
         self.SCREEN = SCREEN
+        # Setting the fonts for the outlay of each background
         self.bigScreenFont = pygame.font.SysFont("Verdana", 60)
         self.mediumScreenFont = pygame.font.SysFont("Helvetica", 30)
         self.smallScreenFont = pygame.font.SysFont("Helvetica", 20)
+        # Defining a variable to determine if the game is pause or not
+        self.pause = False
 
-    def startScreen(self):
+    def mainMeny(self):
         pass
 
 
@@ -54,9 +58,13 @@ class Meny:
         self.SCREEN.blit(score2, (Config.WIDTH - 120, 30))
 
 
-
     def pauseScreen(self):
-        pass
+        """
+        Method to represent the pause screen
+        """
+        while self.pause:
+            textPAUSE = self.bigScreenFont.render()
+
 
 
     def endScreen(self):

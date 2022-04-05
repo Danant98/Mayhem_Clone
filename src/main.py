@@ -114,5 +114,4 @@ class Mayhem:
         sys.exit()
 
 if __name__ == "__main__":
-    game = Mayhem()
-    game.Main()
+    Mayhem().Main()
