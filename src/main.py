@@ -6,8 +6,8 @@ Uit, Institute of Computer Science, 2022
 Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Object-oriented programming.
 """
 # Importing modules and libratries
-import pygame , sys, os
-from meny import Meny
+import pygame , os
+from meny import Menu
 from config import Config
 from Vector import vector
 from startPlatform import Platform
@@ -47,6 +47,7 @@ class Mayhem:
                              vector(Config.player1X, Config.player1Y), 
                               Config.ARROWS, 
                               self.SCREEN)
+        self.player1.score = 5
         self.player2 = Player("spaceship2.png", 
                                vector(Config.WIDTH - Config.platformWIDTH / 2 - 20, 
                                       Config.player1Y),
@@ -64,7 +65,7 @@ class Mayhem:
         # Add object obsticle to sprite group
         self.allSprites.add(obsticle1)
         # Calling meny object
-        self.meny1 = Meny(self.SCREEN, self.runGame)
+        self.meny1 = Menu(self.SCREEN, self.BG)
 
     def EventHandler(self):
         """
@@ -75,7 +76,7 @@ class Mayhem:
                 self.runGame = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.runGame = False
+                    self.meny1.pause = True
                 # Definig actions if player push down 
                 for spaceship in self.spaceshipList:
                     if event.key == spaceship.CONTROLS['LEFT']:
@@ -110,9 +111,12 @@ class Mayhem:
             #self.meny1.pauseScreen()
             self.EventHandler()
             self.collisionHandler()
+            # Checking if one of the players have a score of 5 which ends the game
+            for spaceship in self.spaceshipList:
+                if spaceship.score == 5:
+                    self.meny1.eScreen = True
+            self.meny1.endScreen(self.player1, self.player2)
             self.Update()
-        pygame.quit()
-        sys.exit()
 
 if __name__ == "__main__":
     Mayhem().Main()

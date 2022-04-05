@@ -4,28 +4,25 @@
 Module to represent the meny screen and render game text on screen
 """
 # Importing modules and libraries
-import pygame
+import pygame, sys
 from config import Config
 # Class object
-class Meny:
+class Menu:
     """
     Object to handle text on screen and menys the players is able to open
     """
-    def __init__(self, SCREEN, runGame):
-        # Defining the background 
+    def __init__(self, SCREEN, BG):
+        # Defining the background and screen
         self.SCREEN = SCREEN
+        self.BG = BG
         # Setting the fonts for the outlay of each background
         self.bigScreenFont = pygame.font.SysFont("Verdana", 60)
         self.mediumScreenFont = pygame.font.SysFont("Helvetica", 30)
         self.smallScreenFont = pygame.font.SysFont("Helvetica", 20)
         # Defining a variable to determine if the game is pause or not
         self.pause = False
-        # 
-        self.runGame = runGame
-
-    def mainMeny(self):
-        pass
-
+        # Define a variable to determine if the end screen is open
+        self.eScreen = False
 
     def gameScreen(self, player1, player2):
         """
@@ -65,24 +62,85 @@ class Meny:
         Method to represent the pause screen
         """
         while self.pause:
-            # Feching the mouse position
-            mouseX, mouseY = pygame.mouse.get_pos()
+            pygame.display.set_caption("Mayhem Game")
+            # Setting background for pause screen
+            self.SCREEN.blit(self.BG, (0, 0))
             # Render pause text
             textPAUSE = self.bigScreenFont.render("PAUSE", False, Config.WHITE)
-            button1 = pygame.Rect(Config.WIDTH / 2 - 20, Config.HEIGHT / 2 - 50, 200, 60)
-            button2 = pygame.Rect(Config.WIDTH / 2 -20 , Config.HEIGHT / 2 + 50, 200, 60)
-            if button1.collidepoint((mouseX, mouseY)):
-                self.pause = False
-                self.runGame = True
-            if button2.collidepoint((mouseX, mouseY)):
-                self.pause = False
-                self.runGame = False
-            pygame.draw.rect(self.SCREEN, Config.WHITE, button1)
-            pygame.draw.rect(self.SCREEN, Config.WHITE, button2)
-            self.SCREEN.blit(textPAUSE, ((Config.WIDTH / 2) - textPAUSE.get_width(), 30))
+            textCON = self.mediumScreenFont.render("Press SPACEBAR to continue", False, Config.WHITE)
+            textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit to main menu", False, Config.WHITE)
+            # Checking for events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        self.pause = False
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+            # Print pause menu text on screen
+            self.SCREEN.blit(textPAUSE, ((Config.WIDTH / 2) - textPAUSE.get_width() / 2, 30))
+            self.SCREEN.blit(textCON, ((Config.WIDTH / 2) - textCON.get_width() / 2, (Config.HEIGHT / 2) - 100))
+            self.SCREEN.blit(textQUIT, ((Config.WIDTH / 2) - textQUIT.get_width() / 2, (Config.HEIGHT / 2) + 100))
+            # Updating screen and setting fps
+            pygame.display.update()
+            
             
 
-    def endScreen(self):
-        pass 
+    def endScreen(self, player1, player2):
+        """
+        Method to determine the end screen showing the winner
+        """
+        while self.eScreen:
+            # Setting background for end screen
+            self.SCREEN.blit(self.BG, (0, 0))
+            # Writing the winner depending on the score of each player
+            if player1.score > player2.score:
+                # Rendering end screen text
+                textWINNER = self.mediumScreenFont.render("PLAYER 1 IS THE WINNER!!", 
+                                                        False, Config.WHITE)
+                textWINNER2 = self.mediumScreenFont.render("SCORE: " + str(player1.score), False, Config.WHITE)
+                textCON = self.mediumScreenFont.render("Press SPACEBAR to restart the game", False, Config.WHITE)
+                textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit", False, Config.WHITE)
+            elif player1.score == player2.score:
+                # Rendering end screen text
+                textWINNER = self.mediumScreenFont.render("THE SCORE ENDED EVEN!!!", 
+                                                        False, Config.WHITE)
+                textWINNER2 = self.mediumScreenFont.render("SCORE: " + str(player1.score), False, Config.WHITE)
+                textCON = self.mediumScreenFont.render("Press SPACEBAR to restart the game", False, Config.WHITE)
+                textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit", False, Config.WHITE)    
+            else:
+                # Rendering end screen text
+                textWINNER = self.mediumScreenFont.render("PLAYER 2 IS THE WINNER!!", 
+                                                        False, Config.WHITE)
+                textWINNER2 = self.mediumScreenFont.render("SCORE: " + str(player1.score), False, Config.WHITE)
+                textCON = self.mediumScreenFont.render("Press SPACEBAR to restart the game", False, Config.WHITE)
+                textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit", False, Config.WHITE)    
+            # Checking for events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        self.eScreen = False
+                        # Game is restarted with spaceships in the starting pos, reset score and lives
+                        for player in [player1, player2]:
+                            player.setToStart()
+                            player.score = 0
+                            player.lives = 3
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+            # Blitting text on the screen
+            self.SCREEN.blit(textWINNER, ((Config.WIDTH / 2) - textWINNER.get_width() + 110, (Config.HEIGHT / 2) - 180))
+            self.SCREEN.blit(textWINNER2, ((Config.WIDTH / 2) - textWINNER.get_width() + 110, (Config.HEIGHT / 2) - 100))
+            self.SCREEN.blit(textCON, ((Config.WIDTH / 2) - textCON.get_width() + 200, (Config.HEIGHT / 2) + 150))
+            self.SCREEN.blit(textQUIT, ((Config.WIDTH / 2) - textQUIT.get_width() + 100, (Config.HEIGHT / 2) + 300))
+            # Updating screen
+            pygame.display.update()
+            
 
 
