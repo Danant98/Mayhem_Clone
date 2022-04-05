@@ -47,7 +47,6 @@ class Mayhem:
                              vector(Config.player1X, Config.player1Y), 
                               Config.ARROWS, 
                               self.SCREEN)
-        self.player1.score = 5
         self.player2 = Player("spaceship2.png", 
                                vector(Config.WIDTH - Config.platformWIDTH / 2 - 20, 
                                       Config.player1Y),
@@ -108,7 +107,7 @@ class Mayhem:
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
             self.meny1.gameScreen(self.player1, self.player2)
-            #self.meny1.pauseScreen()
+            self.meny1.pauseScreen()
             self.EventHandler()
             self.collisionHandler()
             # Checking if one of the players have a score of 5 which ends the game
