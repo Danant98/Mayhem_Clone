@@ -11,7 +11,7 @@ class Meny:
     """
     Object to handle text on screen and menys the players is able to open
     """
-    def __init__(self, SCREEN):
+    def __init__(self, SCREEN, runGame):
         # Defining the background 
         self.SCREEN = SCREEN
         # Setting the fonts for the outlay of each background
@@ -20,6 +20,8 @@ class Meny:
         self.smallScreenFont = pygame.font.SysFont("Helvetica", 20)
         # Defining a variable to determine if the game is pause or not
         self.pause = False
+        # 
+        self.runGame = runGame
 
     def mainMeny(self):
         pass
@@ -63,9 +65,22 @@ class Meny:
         Method to represent the pause screen
         """
         while self.pause:
-            textPAUSE = self.bigScreenFont.render()
-
-
+            # Feching the mouse position
+            mouseX, mouseY = pygame.mouse.get_pos()
+            # Render pause text
+            textPAUSE = self.bigScreenFont.render("PAUSE", False, Config.WHITE)
+            button1 = pygame.Rect(Config.WIDTH / 2 - 20, Config.HEIGHT / 2 - 50, 200, 60)
+            button2 = pygame.Rect(Config.WIDTH / 2 -20 , Config.HEIGHT / 2 + 50, 200, 60)
+            if button1.collidepoint((mouseX, mouseY)):
+                self.pause = False
+                self.runGame = True
+            if button2.collidepoint((mouseX, mouseY)):
+                self.pause = False
+                self.runGame = False
+            pygame.draw.rect(self.SCREEN, Config.WHITE, button1)
+            pygame.draw.rect(self.SCREEN, Config.WHITE, button2)
+            self.SCREEN.blit(textPAUSE, ((Config.WIDTH / 2) - textPAUSE.get_width(), 30))
+            
 
     def endScreen(self):
         pass 
