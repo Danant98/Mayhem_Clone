@@ -66,7 +66,7 @@ class Mayhem:
         # Calling meny object
         self.meny1 = Menu(self.SCREEN, self.BG)
 
-    def EventHandler(self):
+    def EventHandler(self, time):
         """
         Method to handle event on the game screen
         """
@@ -85,8 +85,6 @@ class Mayhem:
                         spaceship.angle -= Config.diffAngle
                         spaceship.rotate()
                         
-
-    
     
     def collisionHandler(self):
         """
