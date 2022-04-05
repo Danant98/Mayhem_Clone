@@ -64,7 +64,7 @@ class Mayhem:
         # Add object obsticle to sprite group
         self.allSprites.add(obsticle1)
         # Calling meny object
-        self.meny1 = Meny(self.SCREEN)
+        self.meny1 = Meny(self.SCREEN, self.runGame)
 
     def EventHandler(self):
         """
@@ -107,7 +107,7 @@ class Mayhem:
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
             self.meny1.gameScreen(self.player1, self.player2)
-            self.meny1.pauseScreen(self.runGame)
+            self.meny1.pauseScreen()
             self.EventHandler()
             self.collisionHandler()
             self.Update()
