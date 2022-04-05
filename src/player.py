@@ -90,7 +90,7 @@ class Player(pygame.sprite.Sprite):
     def rotate(self):
         center_img = vector(self.rect.x + (self.image.get_width()/2), 
                         self.rect.y + (self.image.get_height()/2))
-        rotate_Spaceship = pygame.transform.rotate(self.image, self.angle + Config.diffAngle)
+        rotate_Spaceship = pygame.transform.rotate(self.image, np.rad2deg(self.angle))
         rotate_Spaceship_rect = rotate_Spaceship.get_rect(center = center_img)
         return rotate_Spaceship, rotate_Spaceship_rect
 
