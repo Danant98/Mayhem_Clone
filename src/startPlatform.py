@@ -11,9 +11,11 @@ class Platform(pygame.sprite.Sprite):
     """
     Class object to represent the platform
     """
-    def __init__(self, x, y, COLOR):
+    def __init__(self, x, y, COLOR, SCREEN):
         # Constructor form parent class
         super().__init__()
+        # Defining the screen the object is drawn on
+        self.SCREEN = SCREEN
         # Defining the size and color of the platform
         self.image = pygame.Surface([Config.platformWIDTH, Config.platformHEIGHT]).convert_alpha()
         # Defining the color of the platform
@@ -22,4 +24,11 @@ class Platform(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         # Defining the position of the platform
         self.rect.x = x
-        self.rect.y = y
+        self.rect.y = y 
+
+    def update(self):
+        """
+        Method to update and draw the platform on the on the screen
+        """
+        self.SCREEN.blit(self.image, self.rect)
+

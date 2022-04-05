@@ -6,7 +6,7 @@ Uit, Institute of Computer Science, 2022
 Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Object-oriented programming.
 """
 # Importing modules and libratries
-import pygame, os
+import pygame, os, sys
 from meny import Menu
 from config import Config
 from Vector import vector
@@ -33,10 +33,12 @@ class Mayhem:
         # Calling platform object
         self.platform1 = Platform(Config.platformX, 
                                   Config.platformY, 
-                                  Config.WHITE)
+                                  Config.WHITE, 
+                                  self.SCREEN)
         self.platform2 = Platform(Config.WIDTH - Config.platformWIDTH - 20, 
                                   Config.platformY, 
-                                  Config.RED)
+                                  Config.RED, 
+                                  self.SCREEN)
         # Creating sprite group containng all sprites objects
         self.allSprites = pygame.sprite.Group()
         # Add object platform to sprite group
@@ -60,7 +62,8 @@ class Mayhem:
         # Calling obsticle object 
         obsticle1 = Obsticle(Config.WIDTH / 2, 
                              Config.HEIGHT / 2, 
-                             Config.GREEN)
+                             Config.GREEN, 
+                             self.SCREEN)
         # Add object obsticle to sprite group
         self.allSprites.add(obsticle1)
         # Calling meny object
@@ -72,19 +75,23 @@ class Mayhem:
         """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.runGame = False
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.meny1.pause = True
-                # Definig actions if player push down 
-                for spaceship in self.spaceshipList:
-                    if event.key == spaceship.CONTROLS['LEFT']:
-                        spaceship.angle += Config.diffAngle
-                        spaceship.rotate()
-                    if event.key == spaceship.CONTROLS['RIGHT']:
-                        spaceship.angle -= Config.diffAngle
-                        spaceship.rotate()
-                        
+        # Definig actions if player push down 
+        keys = pygame.key.get_pressed()
+        for spaceship in self.spaceshipList:
+            if keys[spaceship.CONTROLS['LEFT']]:
+                spaceship.angle += Config.diffAngle
+            if keys[spaceship.CONTROLS['RIGHT']]:
+                spaceship.angle -= Config.diffAngle
+            if keys[spaceship.CONTROLS['THRUST']]:
+                spaceship.thrust += Config.acceleration
+            if keys[spaceship.CONTROLS['FIRE']]:
+                pass
+
     
     def collisionHandler(self):
         """
@@ -92,10 +99,9 @@ class Mayhem:
         """
         pass
 
-
                     
     def Update(self):
-        self.allSprites.draw(self.SCREEN)
+        self.allSprites.update()
         pygame.display.update()
         
 
@@ -106,7 +112,7 @@ class Mayhem:
             self.SCREEN.blit(self.BG, (0, 0))
             self.meny1.gameScreen(self.player1, self.player2)
             self.meny1.pauseScreen()
-            self.EventHandler()
+            self.EventHandler(time)
             self.collisionHandler()
             # Checking if one of the players have a score of 5 which ends the game
             for spaceship in self.spaceshipList:

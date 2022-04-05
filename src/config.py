@@ -23,7 +23,7 @@ class Config:
     GREEN = "#00ff00"
     BLUE = "#0000ff"
     # Defining constants for gravity, startingfuel and constant fueling 
-    GRAVITY = 10
+    GRAVITY = 2
     maxFuel = 100
     fueling = 10
     # Defining radius of bullets
@@ -37,9 +37,9 @@ class Config:
     platformX = 20
     platformY = HEIGHT - 200
     # Defining starting angle, staring score and starting health for spaceship objects
-    startingAngle = (3/2)*np.pi
+    startingAngle = 0
     diffAngle = 5
-    acceleration = 10
+    acceleration = 1
     playerScore = 0
     startingHealth = 100
     # Player 1 initial position
@@ -52,6 +52,4 @@ class Config:
             'THRUST': pygame.K_w, 'FIRE': pygame.K_1}
     # Obstrcle radius
     obsticleSIZE = 100
-
-
 

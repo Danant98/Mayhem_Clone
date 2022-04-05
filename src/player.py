@@ -16,11 +16,17 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, spaceshipImage, startPos, CONTROLS, SCREEN):
         # Constructor from parent class 
         super().__init__()
+        # Setting the screen the image is loaded to
         self.SCREEN = SCREEN
+        # Defining controls 
         self.CONTROLS = CONTROLS
+        # Defining starting amount of fuel
         self.fuel = Config.maxFuel
+        # Setting the gravity
         self.GRAVITY = Config.GRAVITY
+        # Defining the starting position of the player
         self.startPos = startPos
+        # Defining the starting angle of the player
         self.angle = Config.startingAngle
         # Defining if spaceship is hit or not
         self.HIT = False 
@@ -35,14 +41,17 @@ class Player(pygame.sprite.Sprite):
         self.lives = 3
         # Loading in image of spaceship
         self.image = pygame.image.load(os.path.join("resources", spaceshipImage)).convert_alpha()
+        self.rotIm = self.image
+        #cen = (self.rect.x -self.image.get_width() / 2, self.rect.y - self.image.get_height() / 2)
         # Feching rectangular object to represent the spaceship as a sprite
         self.rect = self.image.get_rect()
+        self.rect.center = (self.image.get_width() / 2, self.image.get_height() / 2)
         # Defining position for the object
         self.rect.x = self.startPos.x - (self.image.get_width() / 2)
         self.rect.y = self.startPos.y - (self.image.get_height() / 2)
         # Defining staring velocity and acceleration of the spaceship
         self.vel = vector(0, 0)
-        self.acc = vector(0, 0)
+        self.thrust = 0
         # Defining the center of the spaceship
         
     
@@ -88,17 +97,28 @@ class Player(pygame.sprite.Sprite):
             self.score -= 1
 
 
-    def rotate(self):
-        rotatedSpaceship = pygame.transform.rotate(self.image, self.angle)# + np.pi/2)
-        center = (self.rect.x - rotatedSpaceship.get_rect().width / 2, self.rect.y - rotatedSpaceship.get_rect().height/2)
-        self.SCREEN.blit(rotatedSpaceship, center)
+    def rotateDraw(self):
+        """
+        Method to rotate the player object round the center of image and blit to screen
+        """
+        self.angle %= 360
+        self.rotIm = pygame.transform.rotate(self.image, self.angle)
+        self.rect = self.rotIm.get_rect(center=self.rect.center)
+        self.SCREEN.blit(self.rotIm, self.rect)
+
+
+    def draw(self):
+        pass
 
 
     def movement(self, time):
-    
+        self.vel.x += np.cos(self.angle) * self.thrust * time
+        self.vel.y += -np.sin(self.angle) * (self.thrust + Config.GRAVITY) * time
+
         # Adding velocity to position  
         self.rect.x += self.vel.x
         self.rect.y += self.vel.y
     
     def update(self):
-        pass
+        self.rotateDraw()
+        self.movement()

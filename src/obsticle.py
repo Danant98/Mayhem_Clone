@@ -11,9 +11,11 @@ class Obsticle(pygame.sprite.Sprite):
     """
     Class representing the obsticle object
     """
-    def __init__(self, x, y, COLOR):
+    def __init__(self, x, y, COLOR, SCREEN):
         # Constructor form parent class
         super().__init__()
+        # 
+        self.SCREEN = SCREEN
         # Creating image of object as a pygame surface with a set size and color 
         self.image = pygame.Surface([Config.obsticleSIZE, Config.obsticleSIZE], pygame.SRCALPHA)
         self.COLOR = COLOR   
@@ -25,3 +27,9 @@ class Obsticle(pygame.sprite.Sprite):
         # Definig position of the object
         self.rect.x = x
         self.rect.y = y
+    
+    def update(self):
+        """
+        Method to update and draw the object on the screen
+        """
+        self.SCREEN.blit(self.image, self.rect)
