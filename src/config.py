@@ -38,7 +38,7 @@ class Config:
     platformY = HEIGHT - 200
     # Defining starting angle, staring score and starting health for spaceship objects
     startingAngle = (3/2)*np.pi
-    diffAngle = 0.1
+    diffAngle = 5
     acceleration = 10
     playerScore = 0
     startingHealth = 100

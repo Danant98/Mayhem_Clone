@@ -108,7 +108,7 @@ class Mayhem:
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
             self.meny1.gameScreen(self.player1, self.player2)
-            self.meny1.pauseScreen()
+            #self.meny1.pauseScreen()
             self.EventHandler()
             self.collisionHandler()
             # Checking if one of the players have a score of 5 which ends the game
