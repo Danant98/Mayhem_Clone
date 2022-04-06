@@ -26,7 +26,7 @@ class Config:
     GRAVITY = 1
     maxFuel = 100
     fueling = 10
-    diffFuel = 100
+    diffFuel = 10
     # Defining radius of bullets
     RADIUS = 4
     # Setting max speed of bullets
@@ -37,7 +37,7 @@ class Config:
     # Platform initial position
     platformX = 20
     platformY = HEIGHT - 200
-    # Defining starting angle, staring score and starting health for spaceship objects
+    # Defining starting angle in degree, staring score and starting health for spaceship objects
     startingAngle = 90
     diffAngle = 5
     acceleration = 5

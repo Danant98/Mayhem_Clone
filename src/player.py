@@ -52,7 +52,6 @@ class Player(pygame.sprite.Sprite):
         # Defining staring velocity and acceleration of the spaceship
         self.vel = vector(0, 0)
         self.thrust = 0
-        # Defining the center of the spaceship
         
     
     def collWithBoundaries(self):
@@ -61,8 +60,10 @@ class Player(pygame.sprite.Sprite):
         """
         if self.rect.x < 0 or self.rect.x + self.image.get_width() > Config.WIDTH:
             self.setToStart()
+            self.lives -= 1
         if self.rect.y < 0 or self.rect.y + self.image.get_height() > Config.HEIGHT:
             self.setToStart()
+            self.lives -= 1
     
     def hitByOtherPlayer(self):
         """
@@ -102,7 +103,7 @@ class Player(pygame.sprite.Sprite):
         Method to rotate the player object round the center of image and blit to screen
         """
         self.angle %= 360
-        self.rotIm = pygame.transform.rotate(self.image, self.angle)
+        self.rotIm = pygame.transform.rotate(self.image, (self.angle - np.rad2deg(np.pi / 2)))
         self.rect = self.rotIm.get_rect(center=self.rect.center)
         self.SCREEN.blit(self.rotIm, self.rect)
 
@@ -112,8 +113,8 @@ class Player(pygame.sprite.Sprite):
 
 
     def movement(self, time):
-        self.vel.x += np.cos(self.angle) * self.thrust * time
-        self.vel.y += ((-np.sin(self.angle)) * self.thrust + Config.GRAVITY) * time
+        self.vel.x += np.cos(np.deg2rad(self.angle)) * self.thrust * time
+        self.vel.y += ((-np.sin(np.deg2rad(self.angle))) * self.thrust + Config.GRAVITY) * time
 
         # Adding velocity to position  
         self.rect.x += self.vel.x
