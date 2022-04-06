@@ -53,6 +53,8 @@ class Player(pygame.sprite.Sprite):
         # Defining staring velocity and acceleration of the spaceship
         self.vel = vector(0, 0)
         self.thrust = 0
+        # Setting a spritelist containg the bullets of the spaceship
+        self.weapon = pygame.sprite.Group()
         
     
     def collWithBoundaries(self):

@@ -8,6 +8,7 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 # Importing modules and libratries
 import pygame, os, sys
 from meny import Menu
+import numpy as np
 from config import Config
 from Vector import vector
 from startPlatform import Platform
@@ -107,12 +108,32 @@ class Mayhem:
                 pass
 
     
-    def collisionHandler(self):
+    def collisionHandler(self, time):
         """
         Method to handle all collisions 
         """
-        pass
-
+        for spaceship in self.spaceshipList:
+            # Using the sprites functions to check for collisions between spaceship and platforms
+            spaceshipOnPlatform = pygame.sprite.spritecollide(spaceship, self.platformSprites, False)
+            if spaceshipOnPlatform:
+                # If spaceship on platform, set velocity equal to zero
+                spaceship.vel.x = 0
+                spaceship.vel.y = 0
+                # Set fueling to true to start fueling if spaceship on platform
+                spaceship.fueling = True
+                # Setting the angle so the player face up
+                spaceship.angle = 90
+                # Fueling as long as the spaceship is on platform and fuel is not at max
+                if spaceship.fueling and spaceship.fuel < Config.maxFuel:
+                    spaceship.fuel += Config.diffFuel * time
+                    # Stoping fueling if fuel is at max
+                    if spaceship.fuel >= Config.maxFuel:
+                        spaceship.fuel = Config.maxFuel
+                # Checking if spaceship has left the platform
+                for platform in self.platformList:
+                    # Stoping fueling if spaceship has left the platform
+                    if spaceship.rect.y > platform.rect.y + 2:
+                        spaceship.fueling = False
                     
     def Update(self, time):
         """
@@ -126,6 +147,9 @@ class Mayhem:
         
 
     def Main(self):
+        """
+        Method to represent the main game loop
+        """
         while self.runGame:
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
@@ -133,7 +157,7 @@ class Mayhem:
             self.meny1.gameScreen(self.player1, self.player2)
             self.meny1.pauseScreen()
             self.EventHandler(time)
-            self.collisionHandler()
+            self.collisionHandler(time)
             # Checking if one of the players have a score of 5 or if one of the players are out of lives, which ends the game
             for spaceship in self.spaceshipList:
                 if spaceship.score == 5 or spaceship.lives == 0:
