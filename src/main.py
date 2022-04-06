@@ -41,9 +41,13 @@ class Mayhem:
                                   self.SCREEN)
         # Creating sprite group containng all sprites objects
         self.allSprites = pygame.sprite.Group()
+        self.obsticleSprites = pygame.sprite.Group()
+        self.platformSprites = pygame.sprite.Group()
         # Add object platform to sprite group
-        self.allSprites.add(self.platform1)
-        self.allSprites.add(self.platform2)
+        self.platformList = [self.platform1, self.platform2]
+        for platform in self.platformList:
+            self.allSprites.add(platform)
+            self.platformSprites.add(platform)
         # Calling player object
         self.player1 = Player("spaceship1.png", 
                              vector(Config.player1X, Config.player1Y), 
@@ -60,12 +64,13 @@ class Mayhem:
         for spaceship in self.spaceshipList:
             self.allSprites.add(spaceship)
         # Calling obsticle object 
-        obsticle1 = Obsticle(Config.WIDTH / 2, 
+        self.obsticle1 = Obsticle(Config.WIDTH / 2, 
                              Config.HEIGHT / 2, 
                              Config.GREEN, 
                              self.SCREEN)
         # Add object obsticle to sprite group
-        self.allSprites.add(obsticle1)
+        self.allSprites.add(self.obsticle1)
+        self.obsticleSprites.add(self.obsticle1)
         # Calling meny object
         self.meny1 = Menu(self.SCREEN, self.BG)
 
@@ -89,7 +94,7 @@ class Mayhem:
             if keys[spaceship.CONTROLS['RIGHT']]:
                 # Subtracting the angle to rotate the player clockwise
                 spaceship.angle -= Config.diffAngle
-            if keys[spaceship.CONTROLS['THRUST']] and spaceship.fuel > 0:
+            if keys[spaceship.CONTROLS['THRUST']] and spaceship.fuel >= 0:
                 # Adding accelerating the player if thrust is activated
                 spaceship.thrust = Config.acceleration
                 # Constant fuel consumption
@@ -115,7 +120,8 @@ class Mayhem:
         """
         for spaceship in self.spaceshipList:
             spaceship.update(time)
-        #self.allSprites.update()
+        self.platformSprites.update()
+        self.obsticleSprites.update()
         pygame.display.update()
         
 
