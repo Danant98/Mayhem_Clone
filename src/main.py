@@ -114,6 +114,7 @@ class Mayhem:
         """
         Method to handle all collisions 
         """
+        # Collision detection for spaceship and platform
         for spaceship in self.spaceshipList:
             # Using the sprites functions to check for collisions between spaceship and platforms
             spaceshipOnPlatform = pygame.sprite.spritecollide(spaceship, self.platformSprites, False)
@@ -136,6 +137,25 @@ class Mayhem:
                     # Stoping fueling if spaceship has left the platform
                     if spaceship.rect.y > platform.rect.y + 2:
                         spaceship.fueling = False
+        """
+        # Collision detection for player - obsticle and bullets - obsticle
+        pygame.sprite.spritecollide(self.obsticle1, self.player1.weapon, True)
+        pygame.sprite.spritecollide(self.obsticle1, self.player2.weapon, True)
+        # Iterating over list of spaceships
+        for spaceship in self.spaceshipList:
+            # Using sprite collision detection to verify collision
+            coll = pygame.sprite.spritecollide(spaceship, self.obsticle1, False)
+            # Subtracting form the spaceships health if a collision occurs
+            if coll:
+                spaceship.health -= 25
+                # Subtracting one life from player if player out of health, reseting to start
+                if spaceship.health == 0:
+                    spaceship.lives -= 1
+                    spaceship.setToStart()
+                    # Subtracting score if player score is not zero
+                    if spaceship.score > 0:
+                        spaceship.score -= 1
+        """
                     
     def Update(self, time):
         """

@@ -59,8 +59,8 @@ class Bullet(pygame.sprite.Sprite):
         self.vel.x += self.maxSpeed * np.cos(np.deg2rad(self.angle)) * time
         self.vel.y += self.maxSpeed * (-np.sin(np.deg2rad(self.angle))) * time
         # Updating position using the velocity
-        self.rect.x += self.vel.x
-        self.rect.y += self.vel.y
+        self.rect.x += int(self.vel.x)
+        self.rect.y += int(self.vel.y)
 
     def update(self, time):
         """
@@ -69,10 +69,3 @@ class Bullet(pygame.sprite.Sprite):
         self.motion(time)
         self.crashWithBoundaries()
         self.draw()
-
-if __name__ == "__main__":
-    bullet = Bullet(20, 20, 0)
-    bullet.motion(0)
-    print(bullet.rect.x, bullet.rect.y)
-    bullet.motion(1)
-    print(bullet.rect.x, bullet.rect.y)
