@@ -107,11 +107,6 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.rotIm.get_rect(center=self.rect.center)
         self.SCREEN.blit(self.rotIm, self.rect)
 
-
-    def draw(self):
-        pass
-
-
     def movement(self, time):
         self.vel.x += np.cos(np.deg2rad(self.angle)) * self.thrust * time
         self.vel.y += ((-np.sin(np.deg2rad(self.angle))) * self.thrust + Config.GRAVITY) * time

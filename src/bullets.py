@@ -13,9 +13,11 @@ class Bullet(pygame.sprite.Sprite):
     """
     Class object to represent the bullets
     """
-    def __init__(self, x, y, angle):
+    def __init__(self, x, y, angle, SCREEN):
         # Constructor form parent class 
-        super().__init__()        
+        super().__init__()
+        # Setting background where the bullet is drawn on
+        self.SCREEN = SCREEN
         # Defining a surface to draw the bullet on and drawing it as a circle
         self.image = pygame.Surface([Config.RADIUS, Config.RADIUS]).convert_alpha()
         pygame.draw.circle(self.image, 
@@ -33,6 +35,12 @@ class Bullet(pygame.sprite.Sprite):
         self.maxSpeed = Config.maxSpeed
         # Setting angle the bullet is shoot out in
         self.angle = angle
+    
+    def draw(self):
+        """
+        Method to draw the object 
+        """
+        self.SCREEN.blit(self.image, self.rect)
 
     def crashWithBoundaries(self):
         """
@@ -48,8 +56,8 @@ class Bullet(pygame.sprite.Sprite):
         """
         Method to determine the motion of the bullet which is constant in x-direction and affected by gravity in the y-direction
         """
-        self.vel += vector(self.maxSpeed * np.cos(self.angle) * time, 
-                           self.maxSpeed * -np.sin(self.angle) * time)
+        self.vel.x += self.maxSpeed * np.cos(np.deg2rad(self.angle)) * time
+        self.vel.y += self.maxSpeed * (-np.sin(np.deg2rad(self.angle))) * time
         # Updating position using the velocity
         self.rect.x += self.vel.x
         self.rect.y += self.vel.y
@@ -60,6 +68,7 @@ class Bullet(pygame.sprite.Sprite):
         """
         self.motion(time)
         self.crashWithBoundaries()
+        self.draw()
 
 if __name__ == "__main__":
     bullet = Bullet(20, 20, 0)

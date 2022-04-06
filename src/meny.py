@@ -32,10 +32,10 @@ class Menu:
         # Start by rendering for player 1
         player_1 = self.mediumScreenFont.render("Player 1", False, Config.WHITE)
         # Render text 
-        healthBar = self.smallScreenFont.render("Health: " + str(player1.health) + "%", 1, Config.WHITE)
+        healthBar = self.smallScreenFont.render("Health: " + str(int(player1.health)) + "%", 1, Config.WHITE)
         numberOfLives = self.smallScreenFont.render("Lives: " + str(player1.lives), 1, Config.WHITE)
-        fuelBar = self.smallScreenFont.render("Fuel: " + str(player1.fuel) + "%", 1, Config.WHITE)
-        score = self.smallScreenFont.render("Score: " + str(player1.score), 1, Config.WHITE)
+        fuelBar = self.smallScreenFont.render("Fuel: " + str(int(player1.fuel)) + "%", 1, Config.WHITE)
+        score = self.smallScreenFont.render("Score: " + str(int(player1.score)), 1, Config.WHITE)
         # Bliting on the screen
         self.SCREEN.blit(player_1, (20, Config.HEIGHT - 110))
         self.SCREEN.blit(healthBar, (20, Config.HEIGHT - 70))
@@ -45,10 +45,10 @@ class Menu:
         # Then do the same for player 2
         player_2 = self.mediumScreenFont.render("Player 2", False, Config.RED)
         # Render text
-        healthBar2 = self.smallScreenFont.render("Health: " + str(player2.health) + "%", 1, Config.RED)
+        healthBar2 = self.smallScreenFont.render("Health: " + str(int(player2.health)) + "%", 1, Config.RED)
         numberOfLives2 = self.smallScreenFont.render("Lives: " + str(player2.lives), 1, Config.RED)
-        fuelBar2 = self.smallScreenFont.render("Fuel: " + str(player2.fuel) + "%", 1, Config.RED)
-        score2 = self.smallScreenFont.render("Score: " + str(player2.score), 1, Config.RED)
+        fuelBar2 = self.smallScreenFont.render("Fuel: " + str(int(player2.fuel)) + "%", 1, Config.RED)
+        score2 = self.smallScreenFont.render("Score: " + str(int(player2.score)), 1, Config.RED)
         # Bliting on the screen
         self.SCREEN.blit(player_2, (Config.WIDTH - 120, Config.HEIGHT - 110))
         self.SCREEN.blit(healthBar2, (Config.WIDTH - 120, Config.HEIGHT - 70))
