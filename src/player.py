@@ -106,14 +106,14 @@ class Player(pygame.sprite.Sprite):
         Method to get the coordinates of the spaceship's cockpit
         """
         # Defining the rotational matrix as a numpy array 
-        rotationalMatrix = np.array([np.cos(np.deg2rad(self.angle)), -np.sin(np.deg2rad(self.angle)), 
-                                     np.sin(np.deg2rad(self.angle)), np.cos(np.deg2rad(self.angle))])
+        rotationalMatrix = np.array([[np.cos(np.deg2rad(self.angle)), -np.sin(np.deg2rad(self.angle))], 
+                                     [np.sin(np.deg2rad(self.angle)), np.cos(np.deg2rad(self.angle))]])
         # Defining the position of the cockpit as a numpy array
-        position = np.array([self.rect.get_widht() / 2, 0])
+        position = np.array([self.image.get_width() / 2, 0])
         # Multiplying the position with the rotation matrix
         rotPos = np.matmul(position, rotationalMatrix)
         # Setting the center of the player object
-        center = (self.rect.x + self.rect.get_widht() / 2, self.rect.y + self.rect.get_widht() / 2)
+        center = (self.rect.x + self.image.get_width() / 2, self.rect.y + self.image.get_width() / 2)
         # Returning the position of the cockpit as a list
         return (np.array(center) + rotPos).tolist()
 

@@ -11,6 +11,7 @@ from meny import Menu
 import numpy as np
 from config import Config
 from Vector import vector
+from bullets import Bullet
 from startPlatform import Platform
 from player import Player
 from obsticle import Obsticle
@@ -105,7 +106,8 @@ class Mayhem:
             if not keys[spaceship.CONTROLS['THRUST']]:
                 spaceship.thrust = 0
             if keys[spaceship.CONTROLS['FIRE']]:
-                pass
+                position = spaceship.posOfCockpit()
+                spaceship.weapon.add(Bullet(position, spaceship.angle, self.SCREEN))
 
     
     def collisionHandler(self, time):
@@ -141,6 +143,7 @@ class Mayhem:
         """
         for spaceship in self.spaceshipList:
             spaceship.update(time)
+            spaceship.weapon.update(time)
         self.platformSprites.update()
         self.obsticleSprites.update()
         pygame.display.update()

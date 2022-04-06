@@ -13,7 +13,7 @@ class Bullet(pygame.sprite.Sprite):
     """
     Class object to represent the bullets
     """
-    def __init__(self, x, y, angle, SCREEN):
+    def __init__(self, startPos, angle, SCREEN):
         # Constructor form parent class 
         super().__init__()
         # Setting background where the bullet is drawn on
@@ -22,14 +22,14 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.Surface([Config.RADIUS, Config.RADIUS]).convert_alpha()
         pygame.draw.circle(self.image, 
                            Config.WHITE, 
-                           (self.image.get_widht() / 2, 
+                           (self.image.get_width() / 2, 
                            self.image.get_height() / 2), 
                            Config.RADIUS / 2)
         # Defining the rectangular shape to represent the object as sprites
         self.rect = self.image.get_rect()
         # Defining the position of the sprite object
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = startPos[0]
+        self.rect.y = startPos[1]
         # Defining the velocity of the bullets
         self.vel = vector(0, 0)
         self.maxSpeed = Config.maxSpeed
