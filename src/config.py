@@ -6,7 +6,6 @@ Module containing all constants used in the game.
 """
 # Importing modules and libraries
 import pygame
-import numpy as np
 # Defining a class with the constants used in the game
 class Config:
     """

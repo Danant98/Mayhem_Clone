@@ -137,25 +137,38 @@ class Mayhem:
                     # Stoping fueling if spaceship has left the platform
                     if spaceship.rect.y > platform.rect.y + 2:
                         spaceship.fueling = False
-        """
+        
         # Collision detection for player - obsticle and bullets - obsticle
         pygame.sprite.spritecollide(self.obsticle1, self.player1.weapon, True)
         pygame.sprite.spritecollide(self.obsticle1, self.player2.weapon, True)
         # Iterating over list of spaceships
         for spaceship in self.spaceshipList:
             # Using sprite collision detection to verify collision
-            coll = pygame.sprite.spritecollide(spaceship, self.obsticle1, False)
-            # Subtracting form the spaceships health if a collision occurs
+            coll = pygame.sprite.spritecollide(spaceship, self.obsticleSprites, False)
+            # If collison, reset player to star position and subtract a life
             if coll:
-                spaceship.health -= 25
-                # Subtracting one life from player if player out of health, reseting to start
-                if spaceship.health == 0:
-                    spaceship.lives -= 1
-                    spaceship.setToStart()
-                    # Subtracting score if player score is not zero
-                    if spaceship.score > 0:
-                        spaceship.score -= 1
-        """
+                spaceship.HIT = False
+                spaceship.lives -= 1
+                spaceship.setToStart()
+        
+        # Collison detection for player - player, player1 - bullet2 and bullet1 - player2
+        player2HitByBullet = pygame.sprite.spritecollide(self.player2, self.player1.weapon, False)
+        player1HitByBullet = pygame.sprite.spritecollide(self.player1, self.player2.weapon, False)
+        # Increasing score for player with bullets and reseting calling the hit by other player method described in player module
+        if player2HitByBullet and not self.player2.fueling:
+            # Adding 3 to player 1 score
+            self.player1.score += 3
+            # Setting hit equal to True
+            self.player2.HIT = True
+            self.player2.hitByOtherPlayer()
+        if player1HitByBullet and not self.player1.fueling:
+            # Adding 3 to player 2 scores
+            self.player2.score += 3
+            # Setting hit equal to True
+            self.player1.HIT = True
+            self.player1.hitByOtherPlayer()
+        
+        
                     
     def Update(self, time):
         """
@@ -174,6 +187,7 @@ class Mayhem:
         Method to represent the main game loop
         """
         while self.runGame:
+            self.meny1.startScreen()
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
