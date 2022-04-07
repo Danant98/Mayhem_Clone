@@ -4,7 +4,6 @@
 File containg the class object to represent the player
 """
 # Importing modules and libraries
-from re import I
 import pygame, os
 from Vector import vector
 from config import Config
