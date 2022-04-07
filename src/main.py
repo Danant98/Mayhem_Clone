@@ -6,7 +6,7 @@ Uit, Institute of Computer Science, 2022
 Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Object-oriented programming.
 """
 # Importing modules and libratries
-import pygame, os, sys
+import pygame, os, sys, profile
 from meny import Menu
 import numpy as np
 from config import Config
@@ -74,7 +74,7 @@ class Mayhem:
         self.allSprites.add(self.obsticle1)
         self.obsticleSprites.add(self.obsticle1)
         # Calling meny object
-        self.meny1 = Menu(self.SCREEN, self.BG)
+        self.menu1 = Menu(self.SCREEN, self.BG)
 
     def EventHandler(self, time):
         """
@@ -86,7 +86,7 @@ class Mayhem:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.meny1.pause = True
+                    self.menu1.pause = True
         # Definig actions if player push down 
         keys = pygame.key.get_pressed()
         for spaceship in self.spaceshipList:
@@ -168,6 +168,8 @@ class Mayhem:
             self.player1.HIT = True
             self.player1.hitByOtherPlayer()
         
+        # Collision detection for platform - bullets
+        pygame.sprite.spritecollide()
         
                     
     def Update(self, time):
@@ -187,20 +189,21 @@ class Mayhem:
         Method to represent the main game loop
         """
         while self.runGame:
-            self.meny1.startScreen()
+            self.menu1.startScreen()
             pygame.display.set_caption("Mayhem Game FPS: {0:.0f}".format(self.clock.get_fps()))
             time = self.clock.tick(self.FPS) / 1000 # Get time in sec
             self.SCREEN.blit(self.BG, (0, 0))
-            self.meny1.gameScreen(self.player1, self.player2)
-            self.meny1.pauseScreen()
+            self.menu1.gameScreen(self.player1, self.player2)
+            self.menu1.pauseScreen()
             self.EventHandler(time)
             self.collisionHandler(time)
             # Checking if one of the players have a score of 5 or if one of the players are out of lives, which ends the game
             for spaceship in self.spaceshipList:
                 if spaceship.score == 5 or spaceship.lives == 0:
-                    self.meny1.eScreen = True
-            self.meny1.endScreen(self.player1, self.player2)
+                    self.menu1.eScreen = True
+            self.menu1.endScreen(self.player1, self.player2)
             self.Update(time)
 
 if __name__ == "__main__":
-    Mayhem().Main()
+    #main = Mayhem().Main()
+    profile.run('Mayhem().Main()')
