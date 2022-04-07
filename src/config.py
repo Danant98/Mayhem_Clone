@@ -14,13 +14,10 @@ class Config:
     # Defining height and width of the screen window
     WIDTH = 900
     HEIGHT = 700
-    # Color for the background of the screen
-    BLACK = "#000000"
     # Set of colors
     RED = "#ff0000"
     WHITE = "#ffffff"
     GREEN = "#00ff00"
-    BLUE = "#0000ff"
     # Defining constants for gravity, startingfuel and constant fueling 
     GRAVITY = 1
     maxFuel = 100
@@ -52,4 +49,3 @@ class Config:
             'THRUST': pygame.K_w, 'FIRE': pygame.K_1}
     # Obstrcle radius
     obsticleSIZE = 150
-
