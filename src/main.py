@@ -206,9 +206,9 @@ class Mayhem:
             self.menu1.pauseScreen()
             self.EventHandler(time)
             self.collisionHandler(time)
-            # Checking if one of the players have a score of 5 or if one of the players are out of lives, which ends the game
+            # Checking if one of the players have a score of 2 or if one of the players are out of lives, which ends the game
             for spaceship in self.spaceshipList:
-                if spaceship.score == 5 or spaceship.lives == 0:
+                if spaceship.score == 2 or spaceship.lives == 0:
                     self.menu1.eScreen = True
             self.menu1.endScreen(self.player1, self.player2)
             self.Update(time)
