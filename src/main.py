@@ -209,5 +209,5 @@ class Mayhem:
             self.Update(time)
 
 if __name__ == "__main__":
-    #Mayhem().Main()
-    cProfile.run('Mayhem().Main()')
+    Mayhem().Main()
+    #cProfile.run('Mayhem().Main()')
