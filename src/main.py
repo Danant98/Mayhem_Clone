@@ -61,6 +61,11 @@ class Mayhem:
                                       self.SCREEN)
         # Defining list containing all players                      
         self.spaceshipList = [self.player1, self.player2]
+        # Defining spaceship group of sprites
+        self.spaceshipSprite1 = pygame.sprite.Group()
+        self.spaceshipSprite2 = pygame.sprite.Group()
+        self.spaceshipSprite1.add(self.player1)
+        self.spaceshipSprite2.add(self.player2)
         # Add object player to sprite group
         for spaceship in self.spaceshipList:
             self.allSprites.add(spaceship)
@@ -162,6 +167,13 @@ class Mayhem:
             # Setting hit equal to True
             self.player1.HIT = True
             self.player1.hitByOtherPlayer(self.player2)
+        # Checking if player collides with player
+        if pygame.sprite.spritecollide(self.player1, self.spaceshipSprite2, False):
+            self.player1.HIT = True
+            self.player1.setToStart()
+        if pygame.sprite.spritecollide(self.player2, self.spaceshipSprite1, False):
+            self.player2.HIT = True
+            self.player2.setToStart()
         
         # Collision detection for platform - bullets
         pygame.sprite.spritecollide(self.platform1, self.player1.weapon, True)

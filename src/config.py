@@ -36,7 +36,7 @@ class Config:
     # Defining starting angle in degree, staring score and starting health for spaceship objects
     startingAngle = 90
     diffAngle = 5
-    acceleration = 5
+    acceleration = 3
     playerScore = 0
     startingHealth = 100
     # Player 1 initial position
