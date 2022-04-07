@@ -73,10 +73,10 @@ class Player(pygame.sprite.Sprite):
         """
         Method to determine action if the player is hit by other player
         """
-        # If the player is hit, ther players health bar goes down
+        # If the player is hit, then players healthbar goes down
         if self.HIT:
             self.health -= 5
-            # If the health bar is zero, the players number of lives goes down and player is reset to the starting position
+            # If the healthbar is zero, the players number of lives goes down and player is reset to the starting position
             if self.health == 0:
                 self.lives -= 1
                 self.decreaseLIFE = True
