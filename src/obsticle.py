@@ -17,7 +17,7 @@ class Obsticle(pygame.sprite.Sprite):
         # Defining the screen 
         self.SCREEN = SCREEN
         # Creating image of object as a pygame surface with a set size and color 
-        self.image = pygame.Surface([Config.obsticleSIZE, Config.obsticleSIZE])
+        self.image = pygame.Surface([Config.obsticleSIZE, Config.obsticleSIZE]).convert_alpha()
         self.image.fill(COLOR)       
         # Fetching a rectangular object to represent the object
         self.rect = self.image.get_rect()
