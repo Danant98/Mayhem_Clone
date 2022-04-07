@@ -34,6 +34,8 @@ class Player(pygame.sprite.Sprite):
         # Defining if the thurst is activated 
         self.fueling = False
         self.THRUST = True
+        # Defining a variable to detect if the player looses a life 
+        self.decreaseLIFE = False
         # Setting score for player
         self.score = Config.playerScore
         # Setting starting health 
@@ -78,6 +80,7 @@ class Player(pygame.sprite.Sprite):
             # If the health bar is zero, the players number of lives goes down and player is reset to the starting position
             if self.health == 0:
                 self.lives -= 1
+                self.decreaseLIFE = True
                 self.setToStart()
         
 

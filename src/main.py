@@ -160,14 +160,14 @@ class Mayhem:
             self.player2.HIT = True
             self.player2.hitByOtherPlayer()
             # If player2's health is zero, increase player1's score by 1
-            if self.player2.health == 0:
+            if self.player2.decreaseLIFE:
                 self.player1.score += 1
         if player1HitByBullet and not self.player1.fueling:
             # Setting hit equal to True
             self.player1.HIT = True
             self.player1.hitByOtherPlayer()
             # If player1's health is zero, increase player2's score by 1
-            if self.player1.health == 0:
+            if self.player1.decreaseLIFE:
                 self.player2.score += 1
         
         # Collision detection for platform - bullets
