@@ -99,7 +99,7 @@ class Player(pygame.sprite.Sprite):
         # Resetting health
         self.health = Config.startingHealth
         # The player's score is reduced by 1 if player collides, but not if player's score is zero
-        if self.HIT and self.score != 0:
+        if not self.HIT and self.score != 0:
             self.score -= 1        
 
 
