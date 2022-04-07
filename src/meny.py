@@ -84,7 +84,7 @@ class Menu:
 
     def gameScreen(self, player1, player2):
         """
-        Module to represent the game screen outlay
+        Method to represent the game screen outlay
         """
         ## Render text for outlay of each player's score, lives, fuel and health
         # Start by rendering for player 1
