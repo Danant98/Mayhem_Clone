@@ -146,7 +146,7 @@ class Mayhem:
             coll = pygame.sprite.collide_rect(spaceship, self.obsticle1)
             # If collison, reset player to star position and subtract a life
             if coll:
-                spaceship.HIT = True
+                spaceship.HIT = False
                 spaceship.lives -= 1
                 spaceship.setToStart()
         
