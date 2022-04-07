@@ -66,8 +66,8 @@ class Mayhem:
         for spaceship in self.spaceshipList:
             self.allSprites.add(spaceship)
         # Calling obsticle object 
-        self.obsticle1 = Obsticle(Config.WIDTH / 2, 
-                             Config.HEIGHT / 2, 
+        self.obsticle1 = Obsticle(Config.WIDTH / 2 - Config.obsticleSIZE / 2, 
+                             Config.HEIGHT / 2 - Config.obsticleSIZE / 2, 
                              Config.GREEN, 
                              self.SCREEN)
         # Add object obsticle to sprite group
@@ -144,7 +144,7 @@ class Mayhem:
         # Iterating over list of spaceships
         for spaceship in self.spaceshipList:
             # Using sprite collision detection to verify collision
-            coll = pygame.sprite.spritecollide(spaceship, self.obsticleSprites, False)
+            coll = pygame.sprite.collide_rect(spaceship, self.obsticle1)
             # If collison, reset player to star position and subtract a life
             if coll:
                 spaceship.HIT = False
@@ -156,21 +156,25 @@ class Mayhem:
         player1HitByBullet = pygame.sprite.spritecollide(self.player1, self.player2.weapon, False)
         # Increasing score for player with bullets and reseting calling the hit by other player method described in player module
         if player2HitByBullet and not self.player2.fueling:
-            # Adding 3 to player 1 score
-            self.player1.score += 3
             # Setting hit equal to True
             self.player2.HIT = True
             self.player2.hitByOtherPlayer()
+            # If player2's health is zero, increase player1's score by 1
+            if self.player2.health == 0:
+                self.player1.score += 1
         if player1HitByBullet and not self.player1.fueling:
-            # Adding 3 to player 2 scores
-            self.player2.score += 3
             # Setting hit equal to True
             self.player1.HIT = True
             self.player1.hitByOtherPlayer()
+            # If player1's health is zero, increase player2's score by 1
+            if self.player1.health == 0:
+                self.player2.score += 1
         
         # Collision detection for platform - bullets
-        pygame.sprite.spritecollide()
-        
+        pygame.sprite.spritecollide(self.platform1, self.player1.weapon, True)
+        pygame.sprite.spritecollide(self.platform1, self.player2.weapon, True)
+        pygame.sprite.spritecollide(self.platform2, self.player1.weapon, True)
+        pygame.sprite.spritecollide(self.platform2, self.player2.weapon, True)
                     
     def Update(self, time):
         """
@@ -205,5 +209,5 @@ class Mayhem:
             self.Update(time)
 
 if __name__ == "__main__":
-    #main = Mayhem().Main()
-    profile.run('Mayhem().Main()')
+    Mayhem().Main()
+    #profile.run('Mayhem().Main()')

@@ -51,5 +51,5 @@ class Config:
     ASDW = {'LEFT': pygame.K_a, 'RIGHT': pygame.K_d, 
             'THRUST': pygame.K_w, 'FIRE': pygame.K_1}
     # Obstrcle radius
-    obsticleSIZE = 100
+    obsticleSIZE = 150
 

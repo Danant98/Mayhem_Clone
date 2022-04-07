@@ -74,7 +74,7 @@ class Player(pygame.sprite.Sprite):
         """
         # If the player is hit, ther players health bar goes down
         if self.HIT:
-            self.health -= 25
+            self.health -= 5
             # If the health bar is zero, the players number of lives goes down and player is reset to the starting position
             if self.health == 0:
                 self.lives -= 1
