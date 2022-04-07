@@ -123,7 +123,7 @@ class Mayhem:
                 spaceship.vel.y = 0
                 # Set fueling to true to start fueling if spaceship on platform
                 spaceship.fueling = True
-                # Setting the angle so the player face up
+                # Setting the angle in degree so the player face up
                 spaceship.angle = 90
                 # Fueling as long as the spaceship is on platform and fuel is not at max
                 if spaceship.fueling and spaceship.fuel < Config.maxFuel:
