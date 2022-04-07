@@ -8,7 +8,6 @@ Clone of the classic Amiga game, Mayhem. Written as an assignment in Inf-1400 Ob
 # Importing modules and libratries
 import pygame, os, sys, cProfile
 from meny import Menu
-import numpy as np
 from config import Config
 from Vector import vector
 from bullets import Bullet
