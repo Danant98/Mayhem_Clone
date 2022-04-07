@@ -173,7 +173,7 @@ class Menu:
                 # Rendering end screen text
                 textWINNER = self.mediumScreenFont.render("PLAYER 2 IS THE WINNER!!", 
                                                         False, Config.WHITE)
-                textWINNER2 = self.mediumScreenFont.render("SCORE: " + str(player1.score), False, Config.WHITE)
+                textWINNER2 = self.mediumScreenFont.render("SCORE: " + str(player2.score), False, Config.WHITE)
                 textCON = self.mediumScreenFont.render("Press SPACEBAR to restart the game", False, Config.WHITE)
                 textQUIT = self.mediumScreenFont.render("Press ESCAPE to quit", False, Config.WHITE)    
             # Checking for events
