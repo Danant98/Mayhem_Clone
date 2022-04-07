@@ -69,7 +69,7 @@ class Player(pygame.sprite.Sprite):
             self.setToStart()
             self.lives -= 1
     
-    def hitByOtherPlayer(self):
+    def hitByOtherPlayer(self, other):
         """
         Method to determine action if the player is hit by other player
         """
@@ -78,8 +78,9 @@ class Player(pygame.sprite.Sprite):
             self.health -= 5
             # If the healthbar is zero, the players number of lives goes down and player is reset to the starting position
             if self.health == 0:
+                # Increase the other player's score
+                other.score += 1
                 self.lives -= 1
-                self.decreaseLIFE = True
                 self.setToStart()
         
 

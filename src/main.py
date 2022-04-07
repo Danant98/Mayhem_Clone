@@ -157,17 +157,11 @@ class Mayhem:
         if player2HitByBullet and not self.player2.fueling:
             # Setting hit equal to True
             self.player2.HIT = True
-            self.player2.hitByOtherPlayer()
-            # If player2's health is zero, increase player1's score by 1
-            if self.player2.decreaseLIFE:
-                self.player1.score += 1
+            self.player2.hitByOtherPlayer(self.player1)
         if player1HitByBullet and not self.player1.fueling:
             # Setting hit equal to True
             self.player1.HIT = True
-            self.player1.hitByOtherPlayer()
-            # If player1's health is zero, increase player2's score by 1
-            if self.player1.decreaseLIFE:
-                self.player2.score += 1
+            self.player1.hitByOtherPlayer(self.player2)
         
         # Collision detection for platform - bullets
         pygame.sprite.spritecollide(self.platform1, self.player1.weapon, True)
