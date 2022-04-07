@@ -26,7 +26,7 @@ class Config:
     # Defining radius of bullets
     RADIUS = 4
     # Setting max speed of bullets
-    maxSpeed = 500
+    maxSpeed = 40
     # Defing size of platform 
     platformWIDTH = WIDTH // 8
     platformHEIGHT = HEIGHT // 35
